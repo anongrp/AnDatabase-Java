@@ -1,9 +1,11 @@
 package anon.database;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Table {
     private String tbName = "tb-temp";
-    private Integer column;
     private File tbDir;
     private boolean status=false;
 
@@ -16,9 +18,8 @@ public class Table {
     }
 
     /* Method For Create Table */
-    public boolean createTable(String tbName,Integer column,Database database) {
+    public boolean createTable(String tbName,Database database) {
         this.tbName = "tb-"+tbName;
-        this.column = column;
         tbDir = new  File(database.dbDir.getAbsolutePath()+"\\"+this.tbName);
 
         if (database.dbStatus){
@@ -27,4 +28,5 @@ public class Table {
         }
         return false;
     }
+
 }
