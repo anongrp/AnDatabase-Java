@@ -1,8 +1,5 @@
 package anon.database;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class Table {
     private String tbName = "tb-temp";
@@ -13,8 +10,8 @@ public class Table {
     public Table(){}
 
     // Constructor
-    public Table(String tbName,Integer column,Database database){
-        createTable(tbName,column,database);
+    public Table(String tbName,Database database){
+        createTable(tbName,database);
     }
 
     /* Method For Create Table */
@@ -28,5 +25,6 @@ public class Table {
         }
         return false;
     }
+
 
 }

@@ -9,7 +9,7 @@ public class Main{
             System.out.println("Connection Ok");
             Database mainDB = new Database("mainDB");
             Database primaryDB = new Database("Primary");
-            Table studentTB = new Table("MainTB",10,mainDB);
+            Table studentTB = new Table("MainTB",mainDB);
         }else{
             System.out.println("Not Ok");
         }
