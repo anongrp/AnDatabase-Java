@@ -1,44 +1,63 @@
 package anon.database;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class Table {
     private String tbName = "tb-temp";
     private File tbDir;
-    private boolean status=false;
-    private int countForColumn=0;
-    private int countForRow=0;
-
+    private boolean status = false;
+    private int countForColumn = 0;
+    private int countForRow = 0;
+    private int columns;
     // Default Constructor
-    public Table(){}
+    public Table() {  }
 
     // Constructor
-    public Table(String tbName,Database database) throws IOException {
-        createTable(tbName,database);
+    public Table(String tbName, Database database) throws IOException {
+        createTable(tbName, database);
     }
 
     /* Method For Create Table */
     public boolean createTable(String tbName, Database database) throws IOException {
-        this.tbName = "tb-"+tbName;
-        tbDir = new  File(database.dbDir.getAbsolutePath()+"\\"+this.tbName+".andb");
+        this.tbName = "tb-" + tbName;
+        tbDir = new File(database.dbDir.getAbsolutePath() + "\\" + this.tbName + ".andb");
 
-        if (database.dbStatus){
+        if (database.isDatabaseAvailable() && !(tbDir.exists())) {
             tbDir.createNewFile();
-            status=true;
+            status = true;
         }
         return false;
     }
-    public void addColumn(String ColumnName) throws IOException {
-        countForColumn++;
-        BufferedWriter WriteColumnData=new BufferedWriter(new FileWriter(tbDir,true));
-        WriteColumnData.write("¤ȸ"+countForColumn+ColumnName);
-        WriteColumnData.close();
+
+
+    public boolean isTableAvailable(){
+        return tbDir.exists();
     }
 
+    public void addColumns(String columnName[]) throws IOException {
+        countForColumn++;
+        columns = columnName.length;
+        BufferedWriter writeColumnData = new BufferedWriter(new FileWriter(tbDir, true));
+        BufferedReader readColumnData = new BufferedReader(new FileReader(tbDir));
+        if (!(readColumnData.readLine().contains("*"))){
+            for (int i = 0; i < columnName.length; i++) {
+                writeColumnData.write("¤*ȸ" + columnName[i]);
+            }
+            writeColumnData.write("¤*ȸ");
+        }
+        writeColumnData.close();
+    }
+
+    public void addRow(String RowName[]) throws IOException {
+        countForRow++;
+        BufferedWriter writeRowData = new BufferedWriter(new FileWriter(tbDir, true));
+        writeRowData.newLine();
+        for (int i = 0; i < RowName.length; i++) {
+            if (i > columns) {
+                throw new ArrayIndexOutOfBoundsException("Row Index Out Of Bound.");
+            } else {
+                writeRowData.write("ȸ" + (i+1) + RowName[i]);
+            }
+        }
+        writeRowData.close();
+    }
 }
-
-
-
-
