@@ -78,7 +78,7 @@ public class Table {
     }
 
 
-    private int counter(String rowData,Character target){
+    public int counter(String rowData,Character target){
         char[] data = rowData.toCharArray();
         Integer count=0;
         for (int i=0;i<data.length;i++){
@@ -89,16 +89,17 @@ public class Table {
         return count;
     }
 
-    private String searcher(String data,String colName) throws IOException {
+
+    public String searcher(String data,String colName) throws IOException {
         Integer rowNo = colInfo.get(colName);
         Integer dataNo;
         BufferedReader readRowData = new BufferedReader(new FileReader(tbDir));
         String rowData;
         while ((rowData = readRowData.readLine()) != null){
-            if (rowData.matches(data)){
-                dataNo = counter(rowData.substring(0,rowData.indexOf(data)),'¤');
+            if (rowData.contains(data)){
+                dataNo = counter(rowData.substring(0,rowData.indexOf(data)),'ȸ');
                 if (rowNo.equals(dataNo)){
-                    return rowData;
+                    data =  rowData;
                 }
             }
         }

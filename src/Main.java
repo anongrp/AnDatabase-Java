@@ -18,6 +18,8 @@ public class Main{
         studentTB.addColumns(colName);
         studentTB.addRow(rowData);
 
+        System.out.println(studentTB.searcher("Gaurav","name"));
+
     }
 }
 
