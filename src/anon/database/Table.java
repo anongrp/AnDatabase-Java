@@ -2,11 +2,10 @@ package anon.database;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
 
 public class Table {
     private String tbName = "tb-temp";
-    private File tbDir;
+    public File tbDir;
     private boolean status = false;
     private int countForColumn = 0;
     private int countForRow = 0;
@@ -90,16 +89,17 @@ public class Table {
     }
 
 
-    private String searcher(String data,String colName) throws IOException {
+    private ArrayList<String> searcher(String data,String colName) throws IOException {
         Integer rowNo = colInfo.get(colName);
         Integer dataNo;
         BufferedReader readRowData = new BufferedReader(new FileReader(tbDir));
-        String rowData,finalData = null;
+        String rowData;
+        ArrayList<String> finalData = new ArrayList<String>();
         while ((rowData = readRowData.readLine()) != null){
             if (rowData.contains(data)){
                 dataNo = counter(rowData.substring(0,rowData.indexOf(data)),'ȸ');
                 if (rowNo.equals(dataNo)){
-                    finalData =  rowData;
+                    finalData.add(rowData);
                 }
             }
         }
@@ -110,7 +110,7 @@ public class Table {
     public boolean deleteElement(String colName,String target) throws IOException {
         boolean deleteStatus = false;
         ArrayList<String> rows = new ArrayList<String>();
-        String deleteRow = searcher(target,colName);
+        String deleteRow = searcher(target,colName).get(0);
         BufferedWriter tableWriter = new BufferedWriter(new FileWriter(tbDir,true));
         BufferedReader tableReader = new BufferedReader(new FileReader(tbDir));
         String data;
@@ -123,11 +123,13 @@ public class Table {
             PrintWriter writer = new PrintWriter(tbDir);
             writer.print("");
             writer.close();
-
+            ;
             for (int j=0;j<rows.size();j++){
                 if (!(rows.get(j).equals(""))){
                     tableWriter.write(rows.get(j));
-                    tableWriter.newLine();
+                    if (!(rows.size() == j+1)){
+                        tableWriter.newLine();
+                    }
                 }
             }
             deleteStatus = true;
@@ -139,6 +141,7 @@ public class Table {
             return deleteStatus;
         }
     }
+
 }
 
 
