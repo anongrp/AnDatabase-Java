@@ -8,6 +8,8 @@ public class Table {
     private int countForColumn = 0;
     private int countForRow = 0;
     private int columns;
+
+
     // Default Constructor
     public Table() {  }
 
@@ -20,7 +22,6 @@ public class Table {
     public boolean createTable(String tbName, Database database) throws IOException {
         this.tbName = "tb-" + tbName;
         tbDir = new File(database.dbDir.getAbsolutePath() + "\\" + this.tbName + ".andb");
-
         if (database.isDatabaseAvailable() && !(tbDir.exists())) {
             tbDir.createNewFile();
             status = true;
@@ -33,12 +34,12 @@ public class Table {
         return tbDir.exists();
     }
 
+
     public void addColumns(String columnName[]) throws IOException {
         countForColumn++;
         columns = columnName.length;
         BufferedWriter writeColumnData = new BufferedWriter(new FileWriter(tbDir, true));
-        BufferedReader readColumnData = new BufferedReader(new FileReader(tbDir));
-        if (!(readColumnData.readLine().contains("*"))){
+        if (tbDir.length() == 0){
             for (int i = 0; i < columnName.length; i++) {
                 writeColumnData.write("¤*ȸ" + columnName[i]);
             }
@@ -55,7 +56,7 @@ public class Table {
             if (i > columns) {
                 throw new ArrayIndexOutOfBoundsException("Row Index Out Of Bound.");
             } else {
-                writeRowData.write("ȸ" + (i+1) + RowName[i]);
+                writeRowData.write("ȸ" + RowName[i]);
             }
         }
         writeRowData.close();

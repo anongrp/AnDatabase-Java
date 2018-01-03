@@ -13,7 +13,9 @@ public class Main{
         Table studentTB = new Table();
         studentTB.createTable("MainTB",mainDB);
         String[] colName = new String[]{"id", "name","email"};
+        String[] rowData = new String[]{"1","Anikesh","anikeshpatel4@gmail.com"};
         studentTB.addColumns(colName);
+        studentTB.addRow(rowData);
     }
 }
 
