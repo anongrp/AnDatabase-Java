@@ -1,13 +1,16 @@
 package anon.database;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Table {
     private String tbName = "tb-temp";
-    private File tbDir;
+    public File tbDir;
     private boolean status = false;
     private int countForColumn = 0;
     private int countForRow = 0;
     private int columns;
+    private HashMap<String,Integer> colInfo = new HashMap<>();
 
 
     // Default Constructor
@@ -35,13 +38,14 @@ public class Table {
     }
 
 
-    public void addColumns(String columnName[]) throws IOException {
+    public void addColumns(String columnNames[]) throws IOException {
         countForColumn++;
-        columns = columnName.length;
+        columns = columnNames.length;
+        setColInfo(columnNames);
         BufferedWriter writeColumnData = new BufferedWriter(new FileWriter(tbDir, true));
         if (tbDir.length() == 0){
-            for (int i = 0; i < columnName.length; i++) {
-                writeColumnData.write("¤" + columnName[i]);
+            for (int i = 0; i < columnNames.length; i++) {
+                writeColumnData.write("¤" + columnNames[i]);
             }
             writeColumnData.write("¤");
         }
@@ -62,6 +66,114 @@ public class Table {
         }
         writeRowData.write("ȸ");
         writeRowData.close();
+
+    }
+
+
+    private void setColInfo(String[] colNames){
+        for (int i=1;i<=colNames.length;i++){
+            colInfo.put(colNames[i-1],i);
+        }
+    }
+
+
+    private int counter(String rowData,Character target){
+        char[] data = rowData.toCharArray();
+        Integer count=0;
+        for (int i=0;i<data.length;i++){
+            if (data[i]==target){
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+    private ArrayList<String> searcher(String data,String colName) throws IOException {
+        Integer rowNo = colInfo.get(colName);
+        Integer dataNo;
+        BufferedReader readRowData = new BufferedReader(new FileReader(tbDir));
+        String rowData;
+        ArrayList<String> finalData = new ArrayList<String>();
+        while ((rowData = readRowData.readLine()) != null){
+            if (rowData.contains(data)){
+                dataNo = counter(rowData.substring(0,rowData.indexOf(data)),'ȸ');
+                if (rowNo.equals(dataNo)){
+                    finalData.add(rowData);
+                }
+            }
+        }
+        return finalData;
+    }
+
+
+    public boolean deleteElement(String colName,String target) throws IOException {
+        boolean deleteStatus = false;
+        ArrayList<String> rows = new ArrayList<String>();
+        String deleteRow = searcher(target,colName).get(0);
+        BufferedWriter tableWriter = new BufferedWriter(new FileWriter(tbDir,true));
+        BufferedReader tableReader = new BufferedReader(new FileReader(tbDir));
+        String data;
+        try {
+            while ((data = tableReader.readLine()) != null){
+                if (!data.equals(deleteRow)){
+                    rows.add(data);
+                }
+            }
+            PrintWriter writer = new PrintWriter(tbDir);
+            writer.print("");
+            writer.close();
+            ;
+            for (int j=0;j<rows.size();j++){
+                if (!(rows.get(j).equals(""))){
+                    tableWriter.write(rows.get(j));
+                    if (!(rows.size() == j+1)){
+                        tableWriter.newLine();
+                    }
+                }
+            }
+            deleteStatus = true;
+        }catch (Exception e){
+            deleteStatus = false;
+        }finally {
+            tableReader.close();
+            tableWriter.close();
+            return deleteStatus;
+        }
+    }
+
+
+    private ArrayList<String> getFetchedData(String fullRow){
+        ArrayList<Integer> symbolPositions = new ArrayList<Integer>();
+        ArrayList<String> fechedData = new ArrayList<String>();
+        if (fullRow != null){
+            char[] dataArray = fullRow.toCharArray();
+            for (int i=0;i<dataArray.length;i++){
+                if (dataArray[i] == 'ȸ'){
+                    symbolPositions.add(i);
+                }
+            }
+            try {
+                for (int j=0;j<symbolPositions.size();j++){
+                    fechedData.add(fullRow.substring(symbolPositions.get(j)+1,symbolPositions.get(j+1)));
+                }
+            }catch (Exception ignored){
+            }
+        }else {
+            fechedData.add(null);
+        }
+        return fechedData;
+    }
+
+
+    public ArrayList<String> getRow(String colName,String target) throws IOException {
+        String row = null;
+        try {
+            row = searcher(target,colName).get(0);
+        }catch (Exception ignored){
+        }finally {
+            return getFetchedData(row);
+        }
     }
 }
 

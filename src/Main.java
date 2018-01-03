@@ -5,6 +5,7 @@ import anon.database.Table;
 import anon.database.connect.Connection;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main{
     public static void main(String[] args) throws IOException, DatabaseNotFoundException, ColumnIndexOutOfBoundException {
@@ -17,6 +18,10 @@ public class Main{
         String[] rowData = new String[]{"1","Anikesh","anikeshpatel4@gmail.com"};
         studentTB.addColumns(colName);
         studentTB.addRow(rowData);
+
+        ArrayList userData = studentTB.getRow("name","Anikesh");
+        System.out.println(userData);
+
     }
 }
 
