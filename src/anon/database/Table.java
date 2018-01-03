@@ -1,5 +1,7 @@
 package anon.database;
 import java.io.*;
+import java.util.HashMap;
+import java.util.Hashtable;
 
 public class Table {
     private String tbName = "tb-temp";
@@ -8,6 +10,7 @@ public class Table {
     private int countForColumn = 0;
     private int countForRow = 0;
     private int columns;
+    private HashMap<Integer,String> colInfo = new HashMap<>();
 
 
     // Default Constructor
@@ -35,13 +38,14 @@ public class Table {
     }
 
 
-    public void addColumns(String columnName[]) throws IOException {
+    public void addColumns(String columnNames[]) throws IOException {
         countForColumn++;
-        columns = columnName.length;
+        columns = columnNames.length;
+        setColInfo(columnNames);
         BufferedWriter writeColumnData = new BufferedWriter(new FileWriter(tbDir, true));
         if (tbDir.length() == 0){
-            for (int i = 0; i < columnName.length; i++) {
-                writeColumnData.write("¤" + columnName[i]);
+            for (int i = 0; i < columnNames.length; i++) {
+                writeColumnData.write("¤" + columnNames[i]);
             }
             writeColumnData.write("¤");
         }
@@ -62,6 +66,21 @@ public class Table {
         }
         writeRowData.write("ȸ");
         writeRowData.close();
+    }
+
+
+    private void setColInfo(String[] colNames){
+        for (int i=1;i<=colNames.length;i++){
+            colInfo.put(i,colNames[i-1]);
+        }
+    }
+
+
+    private String getDataFromRow(String row, Integer index){
+        row = "ȸ 1 ȸ Anikesh ȸ anikeshpatel4@gmail.com ȸ";
+        index = 2;
+
+        return row;
     }
 }
 

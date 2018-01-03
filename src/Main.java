@@ -17,6 +17,7 @@ public class Main{
         String[] rowData = new String[]{"1","Anikesh","anikeshpatel4@gmail.com"};
         studentTB.addColumns(colName);
         studentTB.addRow(rowData);
+
     }
 }
 
