@@ -142,6 +142,39 @@ public class Table {
         }
     }
 
+
+    private ArrayList<String> getFetchedData(String fullRow){
+        ArrayList<Integer> symbolPositions = new ArrayList<Integer>();
+        ArrayList<String> fechedData = new ArrayList<String>();
+        if (fullRow != null){
+            char[] dataArray = fullRow.toCharArray();
+            for (int i=0;i<dataArray.length;i++){
+                if (dataArray[i] == 'ȸ'){
+                    symbolPositions.add(i);
+                }
+            }
+            try {
+                for (int j=0;j<symbolPositions.size();j++){
+                    fechedData.add(fullRow.substring(symbolPositions.get(j)+1,symbolPositions.get(j+1)));
+                }
+            }catch (Exception ignored){
+            }
+        }else {
+            fechedData.add(null);
+        }
+        return fechedData;
+    }
+
+
+    public ArrayList<String> getRow(String colName,String target) throws IOException {
+        String row = null;
+        try {
+            row = searcher(target,colName).get(0);
+        }catch (Exception ignored){
+        }finally {
+            return getFetchedData(row);
+        }
+    }
 }
 
 
