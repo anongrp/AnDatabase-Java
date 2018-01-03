@@ -1,22 +1,19 @@
 import anon.database.Database;
+import anon.database.DatabaseNotFoundException;
 import anon.database.Table;
 import anon.database.connect.Connection;
 
 import java.io.IOException;
 
 public class Main{
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, DatabaseNotFoundException {
 
         if (Connection.connect("Tublime Text")){
-            System.out.println("Connection Ok");
             Database mainDB = new Database("mainDB");
-            Database primaryDB = new Database("Primary");
-            Table studentTB = new Table("MainTB1",mainDB);
-            studentTB.addColumn("id");
-            studentTB.addColumn("name");
-
+            Table studentTB = new Table();
+            studentTB.createTable("MainTB",mainDB);
         }else{
-            System.out.println("Not Ok");
+            throw new DatabaseNotFoundException();
         }
     }
 }
