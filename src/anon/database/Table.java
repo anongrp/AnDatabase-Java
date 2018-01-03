@@ -41,12 +41,13 @@ public class Table {
         BufferedWriter writeColumnData = new BufferedWriter(new FileWriter(tbDir, true));
         if (tbDir.length() == 0){
             for (int i = 0; i < columnName.length; i++) {
-                writeColumnData.write("¤*ȸ" + columnName[i]);
+                writeColumnData.write("¤" + columnName[i]);
             }
-            writeColumnData.write("¤*ȸ");
+            writeColumnData.write("¤");
         }
         writeColumnData.close();
     }
+
 
     public void addRow(String RowName[]) throws IOException, ColumnIndexOutOfBoundException {
         countForRow++;
@@ -59,6 +60,12 @@ public class Table {
                 writeRowData.write("ȸ" + RowName[i]);
             }
         }
+        writeRowData.write("ȸ");
         writeRowData.close();
     }
 }
+
+
+
+
+
