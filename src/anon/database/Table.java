@@ -48,13 +48,13 @@ public class Table {
         writeColumnData.close();
     }
 
-    public void addRow(String RowName[]) throws IOException {
+    public void addRow(String RowName[]) throws IOException, ColumnIndexOutOfBoundException {
         countForRow++;
         BufferedWriter writeRowData = new BufferedWriter(new FileWriter(tbDir, true));
         writeRowData.newLine();
         for (int i = 0; i < RowName.length; i++) {
-            if (i > columns) {
-                throw new ArrayIndexOutOfBoundsException("Row Index Out Of Bound.");
+            if (i+1 > columns) {
+                throw new ColumnIndexOutOfBoundException();
             } else {
                 writeRowData.write("ȸ" + RowName[i]);
             }
