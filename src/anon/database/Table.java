@@ -78,7 +78,7 @@ public class Table {
     }
 
 
-    public int counter(String rowData,Character target){
+    private int counter(String rowData,Character target){
         char[] data = rowData.toCharArray();
         Integer count=0;
         for (int i=0;i<data.length;i++){
@@ -90,20 +90,54 @@ public class Table {
     }
 
 
-    public String searcher(String data,String colName) throws IOException {
+    private String searcher(String data,String colName) throws IOException {
         Integer rowNo = colInfo.get(colName);
         Integer dataNo;
         BufferedReader readRowData = new BufferedReader(new FileReader(tbDir));
-        String rowData;
+        String rowData,finalData = null;
         while ((rowData = readRowData.readLine()) != null){
             if (rowData.contains(data)){
                 dataNo = counter(rowData.substring(0,rowData.indexOf(data)),'ȸ');
                 if (rowNo.equals(dataNo)){
-                    data =  rowData;
+                    finalData =  rowData;
                 }
             }
         }
-        return data;
+        return finalData;
+    }
+
+
+    public boolean deleteElement(String colName,String target) throws IOException {
+        boolean deleteStatus = false;
+        ArrayList<String> rows = new ArrayList<String>();
+        String deleteRow = searcher(target,colName);
+        BufferedWriter tableWriter = new BufferedWriter(new FileWriter(tbDir,true));
+        BufferedReader tableReader = new BufferedReader(new FileReader(tbDir));
+        String data;
+        try {
+            while ((data = tableReader.readLine()) != null){
+                if (!data.equals(deleteRow)){
+                    rows.add(data);
+                }
+            }
+            PrintWriter writer = new PrintWriter(tbDir);
+            writer.print("");
+            writer.close();
+
+            for (int j=0;j<rows.size();j++){
+                if (!(rows.get(j).equals(""))){
+                    tableWriter.write(rows.get(j));
+                    tableWriter.newLine();
+                }
+            }
+            deleteStatus = true;
+        }catch (Exception e){
+            deleteStatus = false;
+        }finally {
+            tableReader.close();
+            tableWriter.close();
+            return deleteStatus;
+        }
     }
 }
 
