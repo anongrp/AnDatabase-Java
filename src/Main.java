@@ -6,18 +6,21 @@ import java.util.ArrayList;
 public class Main{
     public static void main(String[] args) throws IOException, DatabaseNotFoundException, ColumnIndexOutOfBoundException {
 
-        Connection.connect("Tublime Text");
+        /*Connection.connect("Tublime Text");
         Database mainDB = new Database("mainDB");
         Table studentTB = new Table();
         studentTB.createTable("MainTB",mainDB);
         String[] colName = new String[]{"id", "name","email"};
         String[] rowData = new String[]{"6","sahitya","lucky@gmail.com"};
         studentTB.setColumns(colName);
-        studentTB.addRow(rowData);
+        studentTB.addRow(rowData);*/
 
-        AnDatabase anDatabase = new AnDatabase();
+       /* AnDatabase anDatabase = new AnDatabase();
         anDatabase.getSetting().setEncryptionKey(467);
         anDatabase.getSetting().setRealTimeEncryption(true);
+        anDatabase.getSetting().setCaseSensitivity(false);*/
+
+        System.out.println(Security.decrypt(Security.encrypt("Anikesh Patel",7864),7864));
 
     }
 }
