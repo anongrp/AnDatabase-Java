@@ -28,7 +28,29 @@ In AnDatabase data is organized into rows, columns and tables, and it is indexed
  
  5. Ok That's It Your Good To Go With AnDatabase And For Adding Data To Table Or Column Use  
  `String[] rowData = new String[]{"1","UserName","UserEmail@Example.com"};`  
- `studentTB.addRow(rowData);`
+ `studentTB.addRow(rowData);`   
  
+ # >>>Security Example : 
+
+For Password Security AnDatabase Provide A Security Class Thats Encrypt Your Password With A Special Key Inside Program Than Add Into Column.  
+Eg.  
+     `Security.encrypt(Data,Key);`
+     `Security.decrypt(EncryptedData,key);`
+
+_**Basic Encryption Example**_ : 
+ 
+```System.out.println(Security.encrypt("AnDatabase",123456789));```
+
+_Output :_  
+```ɢʏɥʂʕʂʃʂʔʆ```
+
+_**Basic Decryption Example**_ : 
+ 
+```System.out.println(Security.decrypt("ɢʏɥʂʕʂʃʂʔʆ",123456789));```
+
+_Output :_  
+```AnDatabase```    
+
+
  
 ![Alt tag](https://github.com/Anikesh1999/AnDatabase/blob/master/images/AnonDatabase.png)
