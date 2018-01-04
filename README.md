@@ -11,7 +11,8 @@ In AnDatabase data is organized into rows, columns and tables, and it is indexed
  1. No Sql Required Sql Free Database
  2. Light Weight & Easy To Use
  3. Fast and Highly Secure 
- 4. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Know.
+ 4. Configurable Database As Your Project Need (Change Settings As Your Project Need)
+ 5. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Know.
  
 # _>>> Basic Implementation_ :
  
