@@ -29,6 +29,12 @@ public class AnDatabase {
             writer.newLine();
             writer.close();
         }
+        public void setCaseSensitivity(boolean response) throws IOException {
+            writer = new BufferedWriter(new FileWriter(mainPrefFile,true));
+            writer.write("{caseSensitivity:"+response+"}");
+            writer.newLine();
+            writer.close();
+        }
 
     }
 
@@ -36,8 +42,5 @@ public class AnDatabase {
         return new Settings();
     }
 
-    public void encryptor(String data){
-
-    }
 
 }
