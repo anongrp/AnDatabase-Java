@@ -5,7 +5,7 @@ import java.io.File;
 public class Connection {
 
     public static String dbLocation;
-    private static String projectName;
+    public static String projectName;
     public static boolean status=false;
 
 

@@ -13,7 +13,7 @@ public class Table {
 
 
     // Default Constructor
-    public Table() {  }
+    public Table() { }
 
     // Constructor
     public Table(String tbName, Database database) throws IOException {

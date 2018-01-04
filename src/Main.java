@@ -1,7 +1,4 @@
-import anon.database.ColumnIndexOutOfBoundException;
-import anon.database.Database;
-import anon.database.DatabaseNotFoundException;
-import anon.database.Table;
+import anon.database.*;
 import anon.database.connect.Connection;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,7 +15,9 @@ public class Main{
         studentTB.setColumns(colName);
         studentTB.addRow(rowData);
 
-        studentTB.deleteElement("email","lucky");
+        AnDatabase anDatabase = new AnDatabase();
+        anDatabase.getSetting().setEncryptionKey(467);
+        anDatabase.getSetting().setRealTimeEncryption(true);
 
     }
 }
