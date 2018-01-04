@@ -3,8 +3,8 @@
 # `Just Focus On What To Do, Not In How To Do`
 
 
-AnDatabase is a Database that provides simple way to manage data in simple desktop application Like Music Player, Video Player and Text Editor.
-In AnDatabase data is organized into rows, columns and tables, and it is indexed to make it easier to find relevant information. Data gets updated, expanded and deleted as new information is added.
+AnDatabase Is A Database That Provides Simple Way To Manage Data In Simple Desktop Application Like Music Player, Video Player and Text Editor.
+In AnDatabase Data Is Organized Into Rows, Columns And Tables, And It Is Indexed To Make It Easier To Find Relevant Information. Data Gets Updated, Expanded And Deleted As New Information Is Added.
 
 
 # _>>> Features_ : 
