@@ -3,7 +3,6 @@ import anon.database.Database;
 import anon.database.DatabaseNotFoundException;
 import anon.database.Table;
 import anon.database.connect.Connection;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -15,12 +14,11 @@ public class Main{
         Table studentTB = new Table();
         studentTB.createTable("MainTB",mainDB);
         String[] colName = new String[]{"id", "name","email"};
-        String[] rowData = new String[]{"1","Anikesh","anikeshpatel4@gmail.com"};
-        studentTB.addColumns(colName);
+        String[] rowData = new String[]{"6","sahitya","lucky@gmail.com"};
+        studentTB.setColumns(colName);
         studentTB.addRow(rowData);
 
-        ArrayList userData = studentTB.getRow("name","Anikesh");
-        System.out.println(userData);
+        studentTB.deleteElement("email","lucky");
 
     }
 }
