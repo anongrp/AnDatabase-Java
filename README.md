@@ -12,7 +12,7 @@ In AnDatabase data is organized into rows, columns and tables, and it is indexed
  2. Fast and Highly Secure 
  3. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Know.
  
-# _>>> Download _ :   
+# _>>> Download_ :   
 ![AnDatabase v2.0.jar](https://github.com/anongrp/AnDatabase/raw/master/AN%20Database.jar)
  
 # _>>> Basic Implementation_ :
