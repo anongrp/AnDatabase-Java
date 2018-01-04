@@ -5,7 +5,7 @@ import java.io.File;
 
 public class Database {
     private String dbName="db-temp";
-    public boolean dbStatus;
+    private boolean dbStatus;
     public File dbDir;
 
     //  Default Constructor

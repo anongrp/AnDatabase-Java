@@ -7,14 +7,13 @@ public class Table {
     private String tbName = "tb-temp";
     public File tbDir;
     private boolean status = false;
-    private int countForColumn = 0;
-    private int countForRow = 0;
     private int columns;
+    private String[] columnNames;
     private HashMap<String,Integer> colInfo = new HashMap<>();
 
 
     // Default Constructor
-    public Table() {  }
+    public Table() { }
 
     // Constructor
     public Table(String tbName, Database database) throws IOException {
@@ -29,7 +28,7 @@ public class Table {
             tbDir.createNewFile();
             status = true;
         }
-        return false;
+        return status;
     }
 
 
@@ -38,23 +37,22 @@ public class Table {
     }
 
 
-    public void addColumns(String columnNames[]) throws IOException {
-        countForColumn++;
+    public void setColumns(String columnNames[]) throws IOException {
         columns = columnNames.length;
+        this.columnNames = columnNames;
         setColInfo(columnNames);
-        BufferedWriter writeColumnData = new BufferedWriter(new FileWriter(tbDir, true));
         if (tbDir.length() == 0){
+            BufferedWriter writeColumnData = new BufferedWriter(new FileWriter(tbDir, true));
             for (int i = 0; i < columnNames.length; i++) {
                 writeColumnData.write("¤" + columnNames[i]);
             }
             writeColumnData.write("¤");
+            writeColumnData.close();
         }
-        writeColumnData.close();
     }
 
 
     public void addRow(String RowName[]) throws IOException, ColumnIndexOutOfBoundException {
-        countForRow++;
         BufferedWriter writeRowData = new BufferedWriter(new FileWriter(tbDir, true));
         writeRowData.newLine();
         for (int i = 0; i < RowName.length; i++) {
@@ -66,7 +64,6 @@ public class Table {
         }
         writeRowData.write("ȸ");
         writeRowData.close();
-
     }
 
 
@@ -107,10 +104,19 @@ public class Table {
     }
 
 
+    private String getDataFromTable(String row,String colName){
+        return getFetchedData(row).get(colInfo.get(colName));
+    }
+
+
     public boolean deleteElement(String colName,String target) throws IOException {
         boolean deleteStatus = false;
+        String deleteRow = "";
         ArrayList<String> rows = new ArrayList<String>();
-        String deleteRow = searcher(target,colName).get(0);
+        ArrayList<String> finalRow = searcher(target,colName);
+        if (!finalRow.isEmpty()){
+            deleteRow = finalRow.get(0);
+        }
         BufferedWriter tableWriter = new BufferedWriter(new FileWriter(tbDir,true));
         BufferedReader tableReader = new BufferedReader(new FileReader(tbDir));
         String data;
