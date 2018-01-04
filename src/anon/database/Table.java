@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class Table {
     private String tbName = "tb-temp";
     public File tbDir;
+    private Integer objectCallCounter=0;
     private boolean status = false;
     private int columns;
     private String[] columnNames;
@@ -16,19 +17,24 @@ public class Table {
     public Table() { }
 
     // Constructor
-    public Table(String tbName, Database database) throws IOException {
+    public Table(String tbName, Database database) throws IOException, TableCreationOutOfBoundException {
         createTable(tbName, database);
     }
 
     /* Method For Create Table */
-    public boolean createTable(String tbName, Database database) throws IOException {
-        this.tbName = "tb-" + tbName;
-        tbDir = new File(database.dbDir.getAbsolutePath() + "\\" + this.tbName + ".andb");
-        if (database.isDatabaseAvailable() && !(tbDir.exists())) {
-            tbDir.createNewFile();
-            status = true;
+    public boolean createTable(String tbName, Database database) throws IOException, TableCreationOutOfBoundException {
+        objectCallCounter++;
+        if (objectCallCounter>1)
+            throw new TableCreationOutOfBoundException();
+        else {
+            this.tbName = "tb-" + tbName;
+            tbDir = new File(database.dbDir.getAbsolutePath() + "\\" + this.tbName + ".andb");
+            if (database.isDatabaseAvailable() && !(tbDir.exists())) {
+                tbDir.createNewFile();
+                status = true;
+            }
+            return status;
         }
-        return status;
     }
 
 
@@ -182,8 +188,3 @@ public class Table {
         }
     }
 }
-
-
-
-
-

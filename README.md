@@ -39,18 +39,18 @@ Eg.
 
 _**Basic Encryption Example**_ : 
  
-```System.out.println(Security.encrypt("AnDatabase",123456789));```
+![Encryption](https://raw.githubusercontent.com/anongrp/AnDatabase/master/images/Untitled-2.png)
 
 _Output :_  
 ```ɢʏɥʂʕʂʃʂʔʆ```
 
 _**Basic Decryption Example**_ : 
  
-```System.out.println(Security.decrypt("ɢʏɥʂʕʂʃʂʔʆ",123456789));```
+![Decryption](https://raw.githubusercontent.com/anongrp/AnDatabase/master/images/Untitled-1.png)
 
 _Output :_  
 ```AnDatabase```    
 
 
  
-![Alt tag](https://github.com/Anikesh1999/AnDatabase/blob/master/images/AnonDatabase.png)
+![Anon Database](https://github.com/Anikesh1999/AnDatabase/blob/master/images/AnonDatabase.png)
