@@ -20,7 +20,7 @@ public class Main{
         anDatabase.getSetting().setRealTimeEncryption(true);
         anDatabase.getSetting().setCaseSensitivity(false);*/
 
-        System.out.println(Security.decrypt(Security.encrypt("Anikesh Patel",7864),7864));
+        System.out.println(Security.decrypt("ɢʏɥʂʕʂʃʂʔʆ",123456789));
 
     }
 }

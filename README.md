@@ -7,11 +7,49 @@ AnDatabase is a Database that's provide simple way to manage data in simple desk
 In AnDatabase data is organized into rows, columns and tables, and it is indexed to make it easier to find relevant information. Data gets updated, expanded and deleted as new information is added.
 
 
-# _Features_ : 
+# _>>> Features_ : 
  1. No Sql Required Sql Free Databaes
  2. Fast and Highly Secure 
  3. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Know.
  
+# _>>> Basic Implementation_ :
  
+ 1. For Connecting To The AnDatabase
+ `Connection.connect()`, Its Simple Return Boolean Value If Database is Connected Than True Otherwise Return False.
+ 2. Creating Database  
+ `Database mainDatabase = new Database("NameOfDatabase");` 
+ 3. Creating Table Inside mainDatabase  
+ `Table loginFormTable = new Table();`  
+ `loginFormTable.createTable("TableName",mainDatabase);`
+ 
+ 4. Add Columns Inside Table  
+ `String[] colName = new String[]{"id", "name","email","password"};`  
+ `loginFormTable.setColumns(colName);`
+ 
+ 5. Ok That's It Your Good To Go With AnDatabase And For Adding Data To Table Or Column Use  
+ `String[] rowData = new String[]{"1","UserName","UserEmail@Example.com"};`  
+ `studentTB.addRow(rowData);`  
+
+# >>>Security Example : 
+
+For Password Security AnDatabase Provide A Security Class Thats Encrypt Your Password With A Special Key Inside Program Than Add Into Column.  
+Eg.  
+     `Security.encrypt(Data,Key);`
+     `Security.decrypt(EncryptedData,key);`
+
+_**Basic Encryption Example**_ : 
+ 
+```System.out.println(Security.encrypt("AnDatabase",123456789));```
+
+_Output :_  
+```ɢʏɥʂʕʂʃʂʔʆ```
+
+_**Basic Decryption Example**_ : 
+ 
+```System.out.println(Security.decrypt("ɢʏɥʂʕʂʃʂʔʆ",123456789));```
+
+_Output :_  
+```AnDatabase```  
+
 
 ![Alt tag](https://github.com/Anikesh1999/AnDatabase/blob/master/images/AnonDatabase.png)
