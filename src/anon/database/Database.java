@@ -1,12 +1,11 @@
 package anon.database;
 
 import anon.database.connect.Connection;
-
 import java.io.File;
 
 public class Database {
     private String dbName="db-temp";
-    public boolean dbStatus=false;
+    private boolean dbStatus;
     public File dbDir;
 
     //  Default Constructor
@@ -31,6 +30,9 @@ public class Database {
         return dbStatus;
     }
 
+    public boolean isDatabaseAvailable(){
+        return dbDir.exists();
+    }
 
     public String getDataBaseName() {
         return dbName;
