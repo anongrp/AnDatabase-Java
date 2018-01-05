@@ -1,6 +1,7 @@
 package anon.database;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Table {
@@ -161,7 +162,7 @@ public class Table {
         if (fullRow != null){
             char[] dataArray = fullRow.toCharArray();
             for (int i=0;i<dataArray.length;i++){
-                if (dataArray[i] == 'ȸ'){
+                if (dataArray[i] == 'ȸ' || dataArray[i] == '¤'){
                     symbolPositions.add(i);
                 }
             }
@@ -187,4 +188,29 @@ public class Table {
             return getFetchedData(row);
         }
     }
+
+
+    public ArrayList<ArrayList<String>> getTable(Integer limit) throws IOException {
+        ArrayList<ArrayList<String>> tableData = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(tbDir));
+        String rowData;
+        for (int i=0;i<limit;i++){
+            rowData = reader.readLine();
+            tableData.add(getFetchedData(rowData));
+        }
+        return tableData;
+    }
+
+
+    public ArrayList<ArrayList<String>> getFullTable() throws IOException {
+        ArrayList<ArrayList<String>> tableData = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(tbDir));
+        String rowData;
+        while ((rowData = reader.readLine()) != null){
+            tableData.add(getFetchedData(rowData));
+        }
+        return tableData;
+    }
+
+
 }

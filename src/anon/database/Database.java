@@ -12,18 +12,21 @@ public class Database {
     public Database(){ }
 
     //  Constructor
-    public Database(String dbName){
+    public Database(String dbName) throws DatabaseConnectionException {
         createDB(dbName);
     }
 
     /*  Method For Creating DB  */
-    public boolean createDB(String dbName) {
+    public boolean createDB(String dbName) throws DatabaseConnectionException {
         this.dbName = "db-" + dbName;
         dbDir = new File(Connection.dbLocation + "\\" + this.dbName);
 
         if (!dbDir.exists() && Connection.status){
             dbDir.mkdir();
             dbStatus = true;
+        }
+        if (!Connection.status){
+            throw new DatabaseConnectionException();
         }
         return dbStatus;
     }
