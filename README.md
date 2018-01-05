@@ -58,5 +58,8 @@ _Output :_
 ```AnDatabase```    
 
 
+# >>> Standart Way To Implement AnDatabase   
+![Standard Way](https://raw.githubusercontent.com/anongrp/AnDatabase/master/images/standart.png)     
+
  
-![Anon Database](https://github.com/Anikesh1999/AnDatabase/blob/master/images/AnonDatabase.png)
+![Anon Database](https://github.com/Anikesh1999/AnDatabase/blob/master/images/AnonDatabase.png)  
