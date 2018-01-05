@@ -213,4 +213,32 @@ public class Table {
     }
 
 
+    public boolean exportToCSV(File csvFile) throws IOException {
+        boolean status = false;
+        final String COMMA_DELIMITER = ",";
+        final String NEW_LINE_SEPARATOR = "\n";
+
+        ArrayList<ArrayList<String>> tableData = getFullTable();
+
+        FileWriter writer = null;
+        try {
+            csvFile.createNewFile();
+            writer = new FileWriter(csvFile);
+            Integer counter = -1;
+            for (Object i : tableData){
+                counter++;
+                for (Object j : tableData.get(counter)){
+                    writer.append(j.toString());
+                    writer.append(COMMA_DELIMITER);
+                }
+                writer.append(NEW_LINE_SEPARATOR);
+            }
+            status = true;
+            writer.close();
+        }catch (Exception e){
+            status = false;
+        }
+        return status;
+    }
+
 }

@@ -2,6 +2,9 @@ package anon.database;
 
 import anon.database.connect.Connection;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Database {
     private String dbName="db-temp";
@@ -42,4 +45,23 @@ public class Database {
     public boolean getDatabaseStatus(){
         return dbStatus;
     }
+
+    /*public boolean exportDatabase(String pathForDatabase){
+        boolean status = false;
+        File dbDir = new File(pathForDatabase+dbName);
+        File[] tables = this.dbDir.listFiles();
+        try {
+            dbDir.mkdir();
+            for (int i=0;i<tables.length;i++){
+                if (tables[i].isFile()){
+                    // Code Here
+                }
+            }
+        }catch (Exception e){
+            status = false;
+        }finally {
+            return status;
+        }
+    }*/
+
 }
