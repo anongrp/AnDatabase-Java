@@ -46,6 +46,24 @@ public class Database {
         return dbStatus;
     }
 
+    public ArrayList<String> listTables() throws NoTableFoundException {
+        File[] tablesDir = dbDir.listFiles();
+        ArrayList<String> listTables = new ArrayList<>();
+        String tableName;
+        try {
+            for (int i=0;i<tablesDir.length;i++){
+                if (tablesDir[i].isFile()){
+                    tableName = tablesDir[i].getName();
+                    tableName = tableName.substring(tableName.indexOf("-")+1,tableName.indexOf("."));
+                    listTables.add(tableName);
+                }
+            }
+        }catch (Exception e){
+            throw new NoTableFoundException("Tables");
+        }
+        return listTables;
+    }
+
     /*public boolean exportDatabase(String pathForDatabase){
         boolean status = false;
         File dbDir = new File(pathForDatabase+dbName);
