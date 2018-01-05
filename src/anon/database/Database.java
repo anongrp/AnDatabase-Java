@@ -22,8 +22,6 @@ public class Database {
         dbDir = new File(Connection.dbLocation + "\\" + this.dbName);
 
         if (!dbDir.exists() && Connection.status){
-
-            System.out.println(dbDir.getAbsolutePath());
             dbDir.mkdir();
             dbStatus = true;
         }
