@@ -8,7 +8,7 @@ In AnDatabase data is organized into rows, columns and tables, and it is indexed
 
 
 # _>>> Features_ : 
- 1. No Sql Required, Sql Free Databaes
+ 1. No Sql Required, Sql Free Database
  2. Fast and Highly Secure 
  3. Table Exportation Support (To CSV File)
  4. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Knows.
