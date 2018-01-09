@@ -20,6 +20,7 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
 # _>>> Projects Using AnDatabase_ :   
 
 * <a href="https://github.com/anongrp/ThunderGet">ThunderGet</a>
+* <a href="https://github.com/Anikeshpatel/Lucid-Smart-Buddy">Lucid-Smart-Buddy</a>
  
 # _>>> Basic Implementation_ :
  
