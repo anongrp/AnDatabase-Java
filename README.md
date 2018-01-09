@@ -3,12 +3,11 @@
 # `Just Focus On What To Do, Not In How To Do`
 
 
-AnDatabase is a Database that provides simple way to manage data in simple desktop application Like Music Player,Video Player and Text Editor.
-In AnDatabase data is organized into rows, columns and tables, and it is indexed to make it easier to find relevant information. Data gets updated, expanded and deleted as new information is added.
+AnDatabase is a Database that provides a simple way to manage data in simple desktop application Like Music Player, Video Player, and Text Editor. In AnDatabase data is organized into rows, columns, and tables, and it is indexed to make it easier to find relevant information. Data gets updated, expanded and deleted as new information is added.
 
 
 # _>>> Features_ : 
- 1. No Sql Required, Sql Free Database
+ 1. No SQL Required, SQL Free Database
  2. Fast and Highly Secure 
  3. Table Exportation Support (To CSV File)
  4. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Knows.
