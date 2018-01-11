@@ -25,7 +25,7 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
 # _>>> Basic Implementation_ :
  
  1. For Connecting To The AnDatabase
- `Connection.connect()`, It Simply Returns Boolean Value True If Database is Connected Otherwise False.
+ ```java   Connection.connect()```, It Simply Returns Boolean Value True If Database is Connected Otherwise False.
  2. Creating Database  
  ```java 
  Database mainDatabase = new Database("NameOfDatabase");
@@ -52,8 +52,12 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
 
 For Password Security AnDatabase Provide A Security Class That Encrypt Your Password With A Special Key Inside Program Then Add Into Column.  
 Eg.  
-     ```java Security.encrypt(Data,Key);```
-     ```java Security.decrypt(EncryptedData,key);```
+     ```java 
+     Security.encrypt(Data,Key);
+     ```
+     ```java 
+     Security.decrypt(EncryptedData,key);
+     ```
 
 _**Basic Encryption Example**_ : 
  
