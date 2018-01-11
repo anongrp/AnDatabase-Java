@@ -73,7 +73,8 @@ _Output :_
 
 
 # >>> Standart Way To Implement AnDatabase   
-![Standard Way](https://raw.githubusercontent.com/anongrp/AnDatabase/master/images/standart.png =980x200)     
+![Standard Way](https://raw.githubusercontent.com/anongrp/AnDatabase/master/images/standart.png =980x200) 
+<img src="https://raw.githubusercontent.com/anongrp/AnDatabase/master/images/standart.png" alt="Image" style="width: 700px;"/>
 
  
 ![Anon Database](https://github.com/Anikeshpatel/AnDatabase/blob/master/images/AnonDatabase.png)  
