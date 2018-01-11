@@ -27,25 +27,33 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
  1. For Connecting To The AnDatabase
  `Connection.connect()`, It Simply Returns Boolean Value True If Database is Connected Otherwise False.
  2. Creating Database  
- `Database mainDatabase = new Database("NameOfDatabase");` 
+ ```java 
+ Database mainDatabase = new Database("NameOfDatabase");
+ ```  
  3. Creating Table Inside mainDatabase  
- `Table loginFormTable = new Table();`  
- `loginFormTable.createTable("TableName",mainDatabase);`
+ ```java 
+ Table loginFormTable = new Table();  
+ loginFormTable.createTable("TableName",mainDatabase);
+ ```
  
  4. Add Columns Inside Table  
- `String[] colName = new String[]{"id", "name","email","password"};`  
- `loginFormTable.setColumns(colName);`
+ ```java 
+ String[] colName = new String[]{"id", "name","email","password"};  
+ loginFormTable.setColumns(colName);
+ ```
  
  5. Ok That's It You Have Good To Go With AnDatabase And For Adding Data To Table Or Column Use  
- `String[] rowData = new String[]{"1","UserName","UserEmail@Example.com"};`  
- `studentTB.addRow(rowData);`   
+ ```java 
+ String[] rowData = new String[]{"1","UserName","UserEmail@Example.com"};
+ studentTB.addRow(rowData);
+ ```
  
  # >>> Security Example : 
 
 For Password Security AnDatabase Provide A Security Class That Encrypt Your Password With A Special Key Inside Program Then Add Into Column.  
 Eg.  
-     `Security.encrypt(Data,Key);`
-     `Security.decrypt(EncryptedData,key);`
+     ```java Security.encrypt(Data,Key);```
+     ```java Security.decrypt(EncryptedData,key);```
 
 _**Basic Encryption Example**_ : 
  
