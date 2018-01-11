@@ -52,10 +52,10 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
 
 For Password Security AnDatabase Provide A Security Class That Encrypt Your Password With A Special Key Inside Program Then Add Into Column.  
 Eg.  
-     ```java 
-     Security.encrypt(Data,Key);
-     Security.decrypt(EncryptedData,key);
-     ```
+```java 
+Security.encrypt(Data,Key);
+Security.decrypt(EncryptedData,key);
+```
 
 _**Basic Encryption Example**_ : 
  
