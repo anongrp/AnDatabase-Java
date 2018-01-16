@@ -2,8 +2,6 @@ package anon.database;
 
 import anon.database.connect.Connection;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Database {
@@ -39,7 +37,7 @@ public class Database {
     }
 
     public String getDataBaseName() {
-        return dbName;
+        return dbName.substring(dbName.indexOf("-")+1,dbName.length());
     }
 
     public boolean getDatabaseStatus(){
@@ -62,6 +60,32 @@ public class Database {
             throw new NoTableFoundException("Tables");
         }
         return listTables;
+    }
+
+    @Override
+    public String toString() {
+        ArrayList<String> tables;
+        try {
+            tables = this.listTables();
+            if (tables.size() == 0){
+                tables = null;
+            }
+        } catch (NoTableFoundException e) {
+            tables = null;
+        }
+
+        System.out.println("Database Name : "+this.getDataBaseName()+"\n");
+        System.out.println("Total Tables In "+this.getDataBaseName()+" : ");
+        Integer count=0;
+        if (tables != null){
+            for (String table : tables){
+                count++;
+                System.out.println(count+". "+table);
+            }
+        }else {
+            System.out.println("No Tables");
+        }
+        return "\n\n"+super.toString();
     }
 
     /*public boolean exportDatabase(String pathForDatabase){

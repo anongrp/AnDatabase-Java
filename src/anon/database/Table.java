@@ -242,4 +242,24 @@ public class Table {
     }
 
 
+    @Override
+    public String toString() {
+        ArrayList<ArrayList<String>> list = null;
+        try {
+            list = this.getFullTable();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Integer count=0;
+        if (list != null){
+            for (ArrayList data : list){
+                if (count.equals(0))
+                    System.out.println("   "+data);
+                else
+                    System.out.println(count+") "+data);
+                count++;
+            }
+        }
+        return "\n\n"+super.toString();
+    }
 }
