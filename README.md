@@ -75,7 +75,7 @@ _Output :_
 ```AnDatabase```    
 
 
-# >>> Standart Way To Implement AnDatabase   
+# >>> Standard Way To Implement AnDatabase   
 ![Standard Way](https://raw.githubusercontent.com/anongrp/AnDatabase/master/images/standart.png ) 
 
  
