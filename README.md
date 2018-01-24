@@ -26,7 +26,14 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
 * <a href="https://github.com/anikeshpatel/colorcode-pro">ColorCode Pro</a>  
  
 # _>>> Basic Implementation_ :
- 
+
+### _List Of Classes_ :    
+| Classes       | Summary            |
+| ------------- |:------------------:|
+| Database      | Handle Database    |
+| Table         | Handle Tables      |
+| Security      | Provide Encryption |
+
  1. For Connecting To The AnDatabase `Connection.connect();` It Simply Returns Boolean Value True If Database is Connected Otherwise False.     
  
  2. Creating Database  
