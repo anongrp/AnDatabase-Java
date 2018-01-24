@@ -11,6 +11,7 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
  2. Fast and Highly Secure 
  3. Table Exportation Support (To CSV File)
  4. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Knows.
+ 5. Easy Implementation Only Maximum 10 Lines Of Code Required For Implementing AnDatabase.  
  
 # _> Download_ :    
 
