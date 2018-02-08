@@ -55,7 +55,7 @@ public class Table {
             columns[i] = columnNames[i-1];
         }
         noOfColumns = columns.length;
-        this.columnNames = columnNames;
+        this.columnNames = columns;
         setColInfo(columnNames);
         if (tbDir.length() == 0){
             BufferedWriter writeColumnData = new BufferedWriter(new FileWriter(tbDir, true));
@@ -294,8 +294,40 @@ public class Table {
         return status;
     }
 
-    public boolean exportToJSON(File jsonFile){
+    public boolean exportToJSON(File jsonFile) throws IOException {
         boolean status = false;
+        final String COMMA_DELIMITER = ",";
+        final String NEW_LINE_SEPARATOR = "\n";
+        final String DATA_SEPARATOR = ":";
+        final String BRACKET_OPEN = "{";
+        final String BRACKET_CLOSE = "}";
+        final String SINGLE_TAB = "\t";
+        final String DOUBLE_TAB = "\t\t";
+
+        ArrayList<ArrayList<String>> tableData = getFullTable();
+        FileWriter writer = null;
+
+        try {
+            jsonFile.createNewFile();
+            writer = new FileWriter(jsonFile);
+            writer.append(BRACKET_OPEN+NEW_LINE_SEPARATOR+SINGLE_TAB+'"'+tbName.substring(tbName.indexOf("-")+1,tbName.length())+'"'+": ["+NEW_LINE_SEPARATOR);
+
+            for (ArrayList<String> row:tableData){
+                writer.append(SINGLE_TAB+BRACKET_OPEN);
+                for (int i=0;i<row.size();i++){
+                    writer.append(SINGLE_TAB+NEW_LINE_SEPARATOR+DOUBLE_TAB+'"'+columnNames[i]+'"'+DATA_SEPARATOR+'"'+row.get(i)+'"'+COMMA_DELIMITER);
+                }
+                writer.append(NEW_LINE_SEPARATOR+SINGLE_TAB+BRACKET_CLOSE+COMMA_DELIMITER+NEW_LINE_SEPARATOR);
+            }
+
+            writer.append("]"+NEW_LINE_SEPARATOR+BRACKET_CLOSE);
+
+        }catch (Exception e){
+            status = false;
+        }finally {
+            writer.close();
+        }
+
         return status;
     }
 

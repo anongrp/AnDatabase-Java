@@ -22,6 +22,8 @@ public class Main {
         }else {
             System.out.println("Some Erro");
         }
-        
+
+        login_tb.setColumns(column);
+        login_tb.exportToJSON(new File("/home/anikesh/Desktop/Data.json"));
     }
 }
