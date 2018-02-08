@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Table {
+    private Integer primaryKey;
     private String tbName = "tb-temp";
     public File tbDir;
     private Integer objectCallCounter=0;
     private boolean status = false;
-    private int columns;
+    private int noOfColumns;
     private String[] columnNames;
     private HashMap<String,Integer> colInfo = new HashMap<>();
 
@@ -47,13 +48,19 @@ public class Table {
 
 
     public void setColumns(String columnNames[]) throws IOException {
-        columns = columnNames.length;
+
+        String[] columns = new String[columnNames.length+1];
+        columns[0] = "key";
+        for (int i=1;i<columns.length;i++){
+            columns[i] = columnNames[i-1];
+        }
+        noOfColumns = columns.length;
         this.columnNames = columnNames;
         setColInfo(columnNames);
         if (tbDir.length() == 0){
             BufferedWriter writeColumnData = new BufferedWriter(new FileWriter(tbDir, true));
-            for (int i = 0; i < columnNames.length; i++) {
-                writeColumnData.write("¤" + columnNames[i]);
+            for (int i = 0; i < columns.length; i++) {
+                writeColumnData.write("¤" + columns[i]);
             }
             writeColumnData.write("¤");
             writeColumnData.close();
@@ -62,15 +69,38 @@ public class Table {
 
 
     public void addRow(String row[]) throws IOException, ColumnIndexOutOfBoundException {
+        String[] finalRow = new String[row.length + 1];
+         if (rowCounter() == 1){
+             primaryKey = 1;
+             finalRow[0] = primaryKey.toString();
+             for (int i=1;i<finalRow.length;i++){
+                 finalRow[i] = row[i-1];
+             }
+
+         }else {
+             BufferedReader reader = new BufferedReader(new FileReader(tbDir));
+             String lastRow = "",temp;
+             while ((temp = reader.readLine()) != null){
+                 lastRow = temp;
+             }
+             ArrayList<String> lastRowData = getFetchedData(lastRow);
+             primaryKey = Integer.parseInt(lastRowData.get(0)) + 1;
+
+             finalRow[0] = primaryKey.toString();
+             for (int i=1;i<finalRow.length;i++){
+                 finalRow[i] = row[i-1];
+             }
+         }
+
         BufferedWriter writeRowData = new BufferedWriter(new FileWriter(tbDir, true));
         writeRowData.newLine();
-        if (columns < row.length) {
+        if (noOfColumns < finalRow.length) {
             throw new ColumnIndexOutOfBoundException();
         }
-        else if (columns > row.length){
-            Integer blankCell = columns - row.length;
-            for (int i = 0; i < row.length; i++) {
-                writeRowData.write("ȸ" + row[i]);
+        else if (noOfColumns > finalRow.length){
+            Integer blankCell = noOfColumns - finalRow.length;
+            for (int i = 0; i < finalRow.length; i++) {
+                writeRowData.write("ȸ" + finalRow[i]);
             }
             for (int i=0;i<blankCell;i++){
                 writeRowData.write("ȸ" + "Null");
@@ -79,8 +109,8 @@ public class Table {
             writeRowData.close();
         }
         else {
-            for (int i = 0; i < row.length; i++) {
-                writeRowData.write("ȸ" + row[i]);
+            for (int i = 0; i < finalRow.length; i++) {
+                writeRowData.write("ȸ" + finalRow[i]);
             }
             writeRowData.write("ȸ");
             writeRowData.close();
@@ -106,6 +136,15 @@ public class Table {
         return count;
     }
 
+    private int rowCounter() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(tbDir));
+        String data;
+        Integer counter = 0;
+        while ((data = reader.readLine()) != null){
+            counter++;
+        }
+        return counter;
+    }
 
     private ArrayList<String> searcher(String data,String colName) throws IOException {
         Integer rowNo = colInfo.get(colName);

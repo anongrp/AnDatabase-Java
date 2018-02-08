@@ -1,5 +1,6 @@
 import anon.database.*;
 import anon.database.connect.Connection;
+import anon.database.drop.DropTable;
 import anon.database.exceptions.ColumnIndexOutOfBoundException;
 import anon.database.exceptions.DatabaseConnectionException;
 import anon.database.exceptions.NoTableFoundException;
@@ -21,7 +22,5 @@ public class Main {
         }else {
             System.out.println("Some Erro");
         }
-        login_tb.setColumns(column);
-        login_tb.addRow(data);
     }
 }
