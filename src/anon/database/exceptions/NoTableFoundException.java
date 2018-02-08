@@ -1,4 +1,4 @@
-package anon.database;
+package anon.database.exceptions;
 
 public class NoTableFoundException extends Throwable {
     String msg = "No ";

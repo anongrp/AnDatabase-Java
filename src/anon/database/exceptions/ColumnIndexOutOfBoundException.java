@@ -1,4 +1,4 @@
-package anon.database;
+package anon.database.exceptions;
 
 public class ColumnIndexOutOfBoundException extends Throwable {
 
@@ -6,5 +6,6 @@ public class ColumnIndexOutOfBoundException extends Throwable {
     public String getMessage() {
         return "Column Index Out Of Bound";
     }
+
 
 }

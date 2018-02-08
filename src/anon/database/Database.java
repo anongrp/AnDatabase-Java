@@ -1,6 +1,9 @@
 package anon.database;
 
 import anon.database.connect.Connection;
+import anon.database.exceptions.DatabaseConnectionException;
+import anon.database.exceptions.NoTableFoundException;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -20,7 +23,7 @@ public class Database {
     /*  Method For Creating DB  */
     public boolean createDB(String dbName) throws DatabaseConnectionException {
         this.dbName = "db-" + dbName;
-        dbDir = new File(Connection.dbLocation + "\\" + this.dbName);
+        dbDir = new File(Connection.dbLocation + File.separator + this.dbName);
 
         if (!dbDir.exists() && Connection.status){
             dbDir.mkdir();

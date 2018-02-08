@@ -1,4 +1,4 @@
-package anon.database;
+package anon.database.exceptions;
 
 public class TableCreationOutOfBoundException extends Throwable {
     @Override

@@ -17,15 +17,8 @@ public class Connection {
             dbLocation = "C:\\Users\\"+System.getProperty("user.name")+"\\AppData\\Local\\"+projectName;
             Connection.status = true;
         }
-        if (System.getProperty("os.name").toLowerCase().contains("linux")||
-                System.getProperty("os.name").toLowerCase().contains("ubuntu")||
-                System.getProperty("os.name").toLowerCase().contains("mint")||
-                System.getProperty("os.name").toLowerCase().contains("debian")||
-                System.getProperty("os.name").toLowerCase().contains("kali")||
-                System.getProperty("os.name").toLowerCase().contains("fedora")||
-                System.getProperty("os.name").toLowerCase().contains("arch")||
-                System.getProperty("os.name").toLowerCase().contains("elementory")){
-            dbLocation = "/root/Home/.andb";
+        if (System.getProperty("os.name").toLowerCase().contains("linux")){
+            dbLocation = "/home/"+System.getProperty("user.name")+File.separator+"."+projectName;
             Connection.status = true;
         }
         return initSpace();

@@ -1,7 +1,9 @@
 package anon.database;
+import anon.database.exceptions.ColumnIndexOutOfBoundException;
+import anon.database.exceptions.TableCreationOutOfBoundException;
+
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class Table {
@@ -29,7 +31,7 @@ public class Table {
             throw new TableCreationOutOfBoundException();
         else {
             this.tbName = "tb-" + tbName;
-            tbDir = new File(database.dbDir.getAbsolutePath() + "\\" + this.tbName + ".andb");
+            tbDir = new File(database.dbDir.getAbsolutePath() + File.separator + this.tbName + ".andb");
             if (database.isDatabaseAvailable() && !(tbDir.exists())) {
                 tbDir.createNewFile();
                 status = true;
@@ -59,18 +61,30 @@ public class Table {
     }
 
 
-    public void addRow(String RowName[]) throws IOException, ColumnIndexOutOfBoundException {
+    public void addRow(String row[]) throws IOException, ColumnIndexOutOfBoundException {
         BufferedWriter writeRowData = new BufferedWriter(new FileWriter(tbDir, true));
         writeRowData.newLine();
-        for (int i = 0; i < RowName.length; i++) {
-            if (i+1 > columns) {
-                throw new ColumnIndexOutOfBoundException();
-            } else {
-                writeRowData.write("ȸ" + RowName[i]);
-            }
+        if (columns < row.length) {
+            throw new ColumnIndexOutOfBoundException();
         }
-        writeRowData.write("ȸ");
-        writeRowData.close();
+        else if (columns > row.length){
+            Integer blankCell = columns - row.length;
+            for (int i = 0; i < row.length; i++) {
+                writeRowData.write("ȸ" + row[i]);
+            }
+            for (int i=0;i<blankCell;i++){
+                writeRowData.write("ȸ" + "Null");
+            }
+            writeRowData.write("ȸ");
+            writeRowData.close();
+        }
+        else {
+            for (int i = 0; i < row.length; i++) {
+                writeRowData.write("ȸ" + row[i]);
+            }
+            writeRowData.write("ȸ");
+            writeRowData.close();
+        }
     }
 
 
@@ -238,6 +252,11 @@ public class Table {
         }catch (Exception e){
             status = false;
         }
+        return status;
+    }
+
+    public boolean exportToJSON(File jsonFile){
+        boolean status = false;
         return status;
     }
 

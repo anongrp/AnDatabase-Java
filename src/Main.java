@@ -1,24 +1,27 @@
 import anon.database.*;
 import anon.database.connect.Connection;
+import anon.database.exceptions.ColumnIndexOutOfBoundException;
+import anon.database.exceptions.DatabaseConnectionException;
+import anon.database.exceptions.NoTableFoundException;
+import anon.database.exceptions.TableCreationOutOfBoundException;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class Main {
     public static void main(String[] args) throws IOException, TableCreationOutOfBoundException, ColumnIndexOutOfBoundException, DatabaseConnectionException, NoTableFoundException {
 
-        Database maindb;
+        Database maindb = null;
         Table login_tb = null;
-
-        if (Connection.connect("Software_Name")){
-
-            maindb = new Database("mainDatabase");
-            login_tb = new Table("Login Data",maindb);
-            login_tb.setColumns(new String[]{"Id","First_name","Last_name","Email","Gender","Password"});
+        String[] column = new String[]{"name","email","dob","phone"};
+        String[] data = new String[]{"Anikesh","anikeshpatel4@gmail.com","30/10/1999","9098221375"};
+        if (Connection.connect("AnDatabase")){
+            maindb = new Database("maindb");
+            login_tb = new Table("table1",maindb);
+        }else {
+            System.out.println("Some Erro");
         }
-
-        /*System.out.println(login_tb.exportToCSV(new File("C:\\users\\Anikesh\\Desktop\\Data.csv")));*/
+        login_tb.setColumns(column);
+        login_tb.addRow(data);
     }
 }

@@ -3,7 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/AN_Database_jar</output-path>
     <root id="archive" name="AN Database.jar">
       <element id="module-output" name="AN Database" />
-      <element id="library" level="project" name="jxl" />
     </root>
   </artifact>
 </component>
