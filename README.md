@@ -10,7 +10,7 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
  1. No SQL Required, SQL Free Database
  2. Easy Implementation
  3. Fast and Highly Secure 
- 4. Table Exportation Support (To CSV & JSON File)
+ 4. Table Exportation Support (To CSV for Excel & JSON File for Web Data Sharing)
  5. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Knows.
  6. Easy Implementation Only Maximum 10 Lines Of Code Required For Implementing AnDatabase.  
  
@@ -18,8 +18,8 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
 
 ![AnDatabase v2.2 JRE 9 .jar](https://github.com/anongrp/AnDatabase/raw/master/AN%20Database%20v2.2%20JRE%209%20.jar)    
 ![AnDatabase v2.2 JRE 8 .jar](https://github.com/anongrp/AnDatabase/raw/master/AN%20Database%20v2.2%20JRE%208%20.jar)    
-![AnDatabase v2.1jar](https://github.com/anongrp/AnDatabase/raw/master/AN%20Database%20v2.1.jar)    
-![AnDatabase v2.0.jar](https://github.com/anongrp/AnDatabase/raw/master/AN%20Database.jar)     
+![AnDatabase v2.1jar](https://github.com/anongrp/AnDatabase/raw/master/AN%20Database%20v2.1.jar)     
+![Take More ........](https://github.com/anongrp/AnDatabase/blob/master/release.md)  
 
  ### _Looking For Python_ Visit ![AnPyDatabase](https://github.com/Anikeshpatel/AnPyDatabase)    
 ## _> Projects Using AnDatabase_ :   
