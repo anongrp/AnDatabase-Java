@@ -306,7 +306,7 @@ public class Table {
 
         ArrayList<ArrayList<String>> tableData = getFullTable();
         FileWriter writer = null;
-
+        Integer tempCounter = 0;
         try {
             jsonFile.createNewFile();
             writer = new FileWriter(jsonFile);
@@ -317,7 +317,12 @@ public class Table {
                 for (int i=0;i<row.size();i++){
                     writer.append(SINGLE_TAB+NEW_LINE_SEPARATOR+DOUBLE_TAB+'"'+columnNames[i]+'"'+DATA_SEPARATOR+'"'+row.get(i)+'"'+COMMA_DELIMITER);
                 }
-                writer.append(NEW_LINE_SEPARATOR+SINGLE_TAB+BRACKET_CLOSE+COMMA_DELIMITER+NEW_LINE_SEPARATOR);
+                if (tempCounter+1 < tableData.size()){
+                    writer.append(NEW_LINE_SEPARATOR+SINGLE_TAB+BRACKET_CLOSE+COMMA_DELIMITER+NEW_LINE_SEPARATOR);
+                }else {
+                    writer.append(NEW_LINE_SEPARATOR+SINGLE_TAB+BRACKET_CLOSE+COMMA_DELIMITER);
+                }
+                tempCounter++;
             }
 
             writer.append("]"+NEW_LINE_SEPARATOR+BRACKET_CLOSE);
