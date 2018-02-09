@@ -315,12 +315,17 @@ public class Table {
             for (ArrayList<String> row:tableData){
                 writer.append(SINGLE_TAB+BRACKET_OPEN);
                 for (int i=0;i<row.size();i++){
-                    writer.append(SINGLE_TAB+NEW_LINE_SEPARATOR+DOUBLE_TAB+'"'+columnNames[i]+'"'+DATA_SEPARATOR+'"'+row.get(i)+'"'+COMMA_DELIMITER);
+                    if (i+1 < row.size()){
+                        writer.append(SINGLE_TAB+NEW_LINE_SEPARATOR+DOUBLE_TAB+'"'+columnNames[i]+'"'+DATA_SEPARATOR+'"'+row.get(i)+'"'+COMMA_DELIMITER);
+                    }
+                    else {
+                        writer.append(SINGLE_TAB+NEW_LINE_SEPARATOR+DOUBLE_TAB+'"'+columnNames[i]+'"'+DATA_SEPARATOR+'"'+row.get(i)+'"');
+                    }
                 }
                 if (tempCounter+1 < tableData.size()){
                     writer.append(NEW_LINE_SEPARATOR+SINGLE_TAB+BRACKET_CLOSE+COMMA_DELIMITER+NEW_LINE_SEPARATOR);
                 }else {
-                    writer.append(NEW_LINE_SEPARATOR+SINGLE_TAB+BRACKET_CLOSE+COMMA_DELIMITER);
+                    writer.append(NEW_LINE_SEPARATOR+SINGLE_TAB+BRACKET_CLOSE);
                 }
                 tempCounter++;
             }
