@@ -10,6 +10,7 @@ public class Table {
     private Integer primaryKey;
     private String tbName = "tb-temp";
     public File tbDir;
+    private File metaData;
     private Integer objectCallCounter=0;
     private boolean status = false;
     private int noOfColumns;
@@ -26,11 +27,12 @@ public class Table {
     private void createTable(String tbName, Database database,String columnNames[]) throws IOException {
         this.tbName = "tb-" + tbName;
         tbDir = new File(database.dbDir.getAbsolutePath() + File.separator + this.tbName + ".andb");
+        metaData = new File(database.dbDir.getAbsolutePath()+ File.separator + "/MetaData.json");
         if (database.isDatabaseAvailable() && !(tbDir.exists())) {
             tbDir.createNewFile();
+            metaData.createNewFile();
             status = true;
         }
-
 
         String[] columns = new String[columnNames.length+1];
         columns[0] = "key";
@@ -66,20 +68,29 @@ public class Table {
              for (int i=1;i<finalRow.length;i++){
                  finalRow[i] = row[i-1];
              }
+             FileWriter metaDataWriter = new FileWriter(metaData);
+             metaDataWriter.append("{\n\tKeyInfo:\n\t{\n\t\tlastKey:"+primaryKey+";\n\t}\n}");
+             metaDataWriter.close();
 
          }else {
-             BufferedReader reader = new BufferedReader(new FileReader(tbDir));
-             String lastRow = "",temp;
-             while ((temp = reader.readLine()) != null){
-                 lastRow = temp;
+             BufferedReader reader = new BufferedReader(new FileReader(metaData));
+             String data ,key = "0";
+             while ((data = reader.readLine()) != null){
+                 if (data.contains("lastKey")){
+                     key = data.substring(data.indexOf(":")+1,data.length()-1);
+                 }
              }
-             ArrayList<String> lastRowData = getFetchedData(lastRow);
-             primaryKey = Integer.parseInt(lastRowData.get(0)) + 1;
+             //ArrayList<String> lastRowData = getFetchedData(lastRow);
+             primaryKey = Integer.parseInt(key)+1;
 
              finalRow[0] = primaryKey.toString();
              for (int i=1;i<finalRow.length;i++){
                  finalRow[i] = row[i-1];
              }
+
+             FileWriter metaDataWriter = new FileWriter(metaData);
+             metaDataWriter.append("{\n\tKeyInfo:\n\t{\n\t\tlastKey:"+primaryKey+";\n\t}\n}");
+             metaDataWriter.close();
          }
 
         BufferedWriter writeRowData = new BufferedWriter(new FileWriter(tbDir, true));

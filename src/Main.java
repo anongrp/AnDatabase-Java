@@ -24,6 +24,10 @@ public class Main {
             System.out.println("Some Erro");
         }
 
+        for (int i=0;i<500000;i++){
+            login_tb.insertRow(data);
+        }
+
         /*ArrayList table = login_tb.getFullTable();
         System.out.println(table);*/
         /*System.out.println(Security.encrypt("AnDatabase",1234567890));
