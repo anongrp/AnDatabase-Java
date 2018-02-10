@@ -14,10 +14,15 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
  5. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Knows.
  6. Easy Implementation Only Maximum 10 Lines Of Code Required For Implementing AnDatabase.  
  
-## _> Download_ :    
-![AnDatabase v2.3 JRE 9.jar (Latest Version) ](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.3%20JRE%209.jar)   
+## _> Release_ :    
+![AnDatabase v2.4 JRE 9.jar (Latest Version) ](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20%20v2.4%20JRE%209%20.jar)                 
+![AnDatabase v2.4 JRE 8.jar (Latest Version) ](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.4%20JRE%208.jar)    
+![AnDatabase v2.3 JRE 9.jar ](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.3%20JRE%209.jar)   
 ![AnDatabase v2.2 JRE 9.jar](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.2%20JRE%209%20.jar)    
-![AnDatabase v2.2 JRE 8.jar](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.2%20JRE%208%20.jar)      
+![AnDatabase v2.2 JRE 8.jar](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.2%20JRE%208%20.jar)    
+![AnDatabase v2.1jar](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.1.jar)    
+
+      
 ![Take More ........](https://github.com/anongrp/AnDatabase/blob/master/Release.md)  
 
  ### _Looking For Python_ Visit ![AnPyDatabase](https://github.com/Anikeshpatel/AnPyDatabase)    
