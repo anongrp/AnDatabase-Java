@@ -4,10 +4,7 @@ import anon.database.exceptions.ColumnIndexOutOfBoundException;
 import anon.database.exceptions.DatabaseConnectionException;
 import anon.database.exceptions.NoTableFoundException;
 import anon.database.exceptions.TableCreationOutOfBoundException;
-
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class Main {
