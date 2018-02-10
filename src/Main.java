@@ -26,12 +26,6 @@ public class Main {
 
         /*ArrayList table = login_tb.getFullTable();
         System.out.println(table);*/
-
-        /*for (int i=0;i<100000;i++){
-            login_tb.insertRow(data);
-            System.out.println(i);
-        }*/
-
         /*System.out.println(Security.encrypt("AnDatabase",1234567890));
         System.out.println(Security.decrypt(Security.encrypt("AnDatabase",1234567890),1234567890));*/
     }

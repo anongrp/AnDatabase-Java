@@ -1,7 +1,7 @@
 package anon.database;
+
 import anon.database.exceptions.ColumnIndexOutOfBoundException;
 import anon.database.exceptions.TableCreationOutOfBoundException;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,7 +60,7 @@ public class Table {
 
     public void insertRow(String row[]) throws IOException, ColumnIndexOutOfBoundException {
         String[] finalRow = new String[row.length + 1];
-         if (rowCounter() == 1){
+         if (!hasMoreThanOneRow()){
              primaryKey = 1;
              finalRow[0] = primaryKey.toString();
              for (int i=1;i<finalRow.length;i++){
@@ -126,14 +126,19 @@ public class Table {
         return count;
     }
 
-    private int rowCounter() throws IOException {
+    private boolean hasMoreThanOneRow() throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(tbDir));
-        String data;
+        String data = "";
         Integer counter = 0;
-        while ((data = reader.readLine()) != null){
+        while (counter != 2){
+            data = reader.readLine();
             counter++;
         }
-        return counter;
+        if (data == null) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private ArrayList<String> searcher(String data,String colName) throws IOException {
