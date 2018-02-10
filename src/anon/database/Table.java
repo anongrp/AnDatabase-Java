@@ -17,37 +17,20 @@ public class Table {
     private HashMap<String,Integer> colInfo = new HashMap<>();
 
 
-    // Default Constructor
-    public Table() { }
-
     // Constructor
-    public Table(String tbName, Database database) throws IOException, TableCreationOutOfBoundException {
-        createTable(tbName, database);
+    public Table(String tbName, Database database,String columnNames[]) throws IOException, TableCreationOutOfBoundException {
+        createTable(tbName, database, columnNames);
     }
 
     /* Method For Create Table */
-    public boolean createTable(String tbName, Database database) throws IOException, TableCreationOutOfBoundException {
-        objectCallCounter++;
-        if (objectCallCounter>1)
-            throw new TableCreationOutOfBoundException();
-        else {
-            this.tbName = "tb-" + tbName;
-            tbDir = new File(database.dbDir.getAbsolutePath() + File.separator + this.tbName + ".andb");
-            if (database.isDatabaseAvailable() && !(tbDir.exists())) {
-                tbDir.createNewFile();
-                status = true;
-            }
-            return status;
+    private void createTable(String tbName, Database database,String columnNames[]) throws IOException {
+        this.tbName = "tb-" + tbName;
+        tbDir = new File(database.dbDir.getAbsolutePath() + File.separator + this.tbName + ".andb");
+        if (database.isDatabaseAvailable() && !(tbDir.exists())) {
+            tbDir.createNewFile();
+            status = true;
         }
-    }
 
-
-    public boolean isTableAvailable(){
-        return tbDir.exists();
-    }
-
-
-    public void setColumns(String columnNames[]) throws IOException {
 
         String[] columns = new String[columnNames.length+1];
         columns[0] = "key";
@@ -56,8 +39,10 @@ public class Table {
         }
         noOfColumns = columns.length;
         this.columnNames = columns;
-        setColInfo(columnNames);
+        setColInfo(columns);
+
         if (tbDir.length() == 0){
+
             BufferedWriter writeColumnData = new BufferedWriter(new FileWriter(tbDir, true));
             for (int i = 0; i < columns.length; i++) {
                 writeColumnData.write("¤" + columns[i]);
@@ -68,7 +53,12 @@ public class Table {
     }
 
 
-    public void addRow(String row[]) throws IOException, ColumnIndexOutOfBoundException {
+    public boolean isTableAvailable(){
+        return tbDir.exists();
+    }
+
+
+    public void insertRow(String row[]) throws IOException, ColumnIndexOutOfBoundException {
         String[] finalRow = new String[row.length + 1];
          if (rowCounter() == 1){
              primaryKey = 1;
