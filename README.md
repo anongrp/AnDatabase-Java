@@ -47,20 +47,14 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
  ```  
  3. Creating Table Inside mainDatabase  
  ```java 
- Table loginFormTable = new Table();  
- loginFormTable.createTable("TableName",mainDatabase);
+ String[] colName = new String[]{"name","email","password"};
+ Table loginFormTable = new Table("TableName",mainDatabase,colName);  
  ```
  
- 4. Add Columns Inside Table  
+ 4. Ok That's It You Have Good To Go With AnDatabase And For Adding Data To Table Or Column Use  
  ```java 
- String[] colName = new String[]{"id", "name","email","password"};  
- loginFormTable.setColumns(colName);
- ```
- 
- 5. Ok That's It You Have Good To Go With AnDatabase And For Adding Data To Table Or Column Use  
- ```java 
- String[] rowData = new String[]{"1","UserName","UserEmail@Example.com"};
- studentTB.addRow(rowData);
+ String[] rowData = new String[]{"UserName","UserEmail@Example.com","12345"};
+ studentTB.insertRow(rowData);
  ```
  
  # >>> Security Example : 
