@@ -4,6 +4,7 @@ import anon.database.exceptions.ColumnIndexOutOfBoundException;
 import anon.database.exceptions.DatabaseConnectionException;
 import anon.database.exceptions.NoTableFoundException;
 import anon.database.exceptions.TableCreationOutOfBoundException;
+import java.io.File;
 import java.io.IOException;
 
 
@@ -21,6 +22,8 @@ public class Main {
             System.out.println("Some Erro");
         }
 
-        System.out.println(login_tb.execQuery("update name=Anon where key=4"));
+        for (int i=0 ;i<=100000;i++){
+            login_tb.insertRow(data);
+        }
     }
 }
