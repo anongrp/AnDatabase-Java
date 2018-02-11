@@ -21,10 +21,6 @@ public class Main {
             System.out.println("Some Erro");
         }
 
-        System.out.println("update name=Anshu where id = 5");
-//        System.out.println(login_tb.execQuery("update name=Anshu where key =4"));
-        System.out.println(login_tb.getRowWithQuery("key=4"));
-
-
+        System.out.println(login_tb.execQuery("update name=Anon where key=4"));
     }
 }

@@ -176,7 +176,7 @@ public class Table {
     }
 
     public boolean deleteElementWithQuery(String query) throws IOException {
-        return deleteElement(query.substring(0,query.indexOf("=")),query.substring(query.indexOf("=")+1,query.length()));
+        return deleteElement(query.substring(0,query.indexOf("=")).trim(),query.substring(query.indexOf("=")+1,query.length()).trim());
     }
 
     public boolean deleteElement(String colName,String target) throws IOException {
@@ -242,7 +242,7 @@ public class Table {
 
 
     public ArrayList<String> getRowWithQuery(String query) throws IOException {
-        return getRow(query.substring(0, query.indexOf("=")),query.substring(query.indexOf("=")+1,query.length()));
+        return getRow(query.substring(0, query.indexOf("=")).trim(),query.substring(query.indexOf("=")+1,query.length()).trim());
     }
 
     public ArrayList<String> getRow(String colName,String target) throws IOException {
@@ -291,7 +291,6 @@ public class Table {
         try {
             while ((data = tableReader.readLine()) != null){
                 if (data.equals(updateRow)){
-                    System.out.println(data);
                     ArrayList<String> updatedRow = getFetchedData(data);
                     data = "";
                     updatedRow.remove(colInfo.get(updateCol)-1);
@@ -331,10 +330,9 @@ public class Table {
             if (query.contains("where") && query.contains("=")){
                 String dataCol,colName,colData;
                 dataCol = query.substring(query.indexOf(" ",query.indexOf("get")),query.indexOf(" ",query.indexOf(" ",query.indexOf("get"))+1)).trim();
-                colName = query.substring(query.indexOf(" ",query.indexOf("where")),query.indexOf("=")+1).trim();
+                colName = query.substring(query.indexOf(" ",query.indexOf("where")),query.indexOf("=")).trim();
                 colData = query.substring(query.indexOf("=")+1,query.length()).trim();
                 feedback =  getDataFromTable(searcher(colData,colName).get(0),dataCol);
-                status = true;
             }
         }else if (query.contains("update")){
             String data,dataCol,colName,colData;
@@ -426,7 +424,6 @@ public class Table {
 
         return status;
     }
-
 
     @Override
     public String toString() {
