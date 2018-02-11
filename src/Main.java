@@ -20,7 +20,11 @@ public class Main {
         }else {
             System.out.println("Some Erro");
         }
-        System.out.println(login_tb.deleteElementWithQuery("key=2"));
-        System.out.println(login_tb.getRowWithQuery("name=Anikesh"));
+
+        System.out.println("update name=Anshu where id = 5");
+//        System.out.println(login_tb.execQuery("update name=Anshu where key =4"));
+        System.out.println(login_tb.getRowWithQuery("key=4"));
+
+
     }
 }

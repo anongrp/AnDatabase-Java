@@ -156,10 +156,11 @@ public class Table {
         Integer rowNo = colInfo.get(colName);
         Integer dataNo;
         BufferedReader readRowData = new BufferedReader(new FileReader(tbDir));
-        String rowData;
+        String rowData,colData;
         ArrayList<String> finalData = new ArrayList<String>();
         while ((rowData = readRowData.readLine()) != null){
-            if (rowData.contains(data)){
+            colData = getDataFromTable(rowData,colName);
+            if (colData.equals(data)){
                 dataNo = counter(rowData.substring(0,rowData.indexOf(data)),'ȸ');
                 if (rowNo.equals(dataNo)){
                     finalData.add(rowData);
@@ -173,6 +174,7 @@ public class Table {
     private String getDataFromTable(String row,String colName){
         return getFetchedData(row).get(colInfo.get(colName) - 1);
     }
+
     public boolean deleteElementWithQuery(String query) throws IOException {
         return deleteElement(query.substring(0,query.indexOf("=")),query.substring(query.indexOf("=")+1,query.length()));
     }
@@ -197,7 +199,6 @@ public class Table {
             PrintWriter writer = new PrintWriter(tbDir);
             writer.print("");
             writer.close();
-            ;
             for (int j=0;j<rows.size();j++){
                 if (!(rows.get(j).equals(""))){
                     tableWriter.write(rows.get(j));
@@ -275,6 +276,79 @@ public class Table {
             tableData.add(getFetchedData(rowData));
         }
         return tableData;
+    }
+
+    private void updateCell(String colName,String colData,String updateCol,String updateData) throws IOException {
+        String updateRow = "";
+        ArrayList<String> rows = new ArrayList<String>();
+        ArrayList<String> finalRow = searcher(colData,colName);
+        if (!finalRow.isEmpty()){
+            updateRow = finalRow.get(0);
+        }
+        BufferedWriter tableWriter = new BufferedWriter(new FileWriter(tbDir,true));
+        BufferedReader tableReader = new BufferedReader(new FileReader(tbDir));
+        String data;
+        try {
+            while ((data = tableReader.readLine()) != null){
+                if (data.equals(updateRow)){
+                    System.out.println(data);
+                    ArrayList<String> updatedRow = getFetchedData(data);
+                    data = "";
+                    updatedRow.remove(colInfo.get(updateCol)-1);
+                    updatedRow.add(colInfo.get(updateCol)-1,updateData);
+                    for (String cellData:updatedRow){
+                        data = data+"ȸ"+cellData;
+                    }
+                    data = data + "ȸ";
+                    rows.add(data);
+                }else {
+                    rows.add(data);
+                }
+            }
+            PrintWriter writer = new PrintWriter(tbDir);
+            writer.print("");
+            writer.close();
+            for (int j=0;j<rows.size();j++){
+                if (!(rows.get(j).equals(""))){
+                    tableWriter.write(rows.get(j));
+                    if (!(rows.size() == j+1)){
+                        tableWriter.newLine();
+                    }
+                }
+            }
+        }catch (Exception e){
+
+        }finally {
+            tableReader.close();
+            tableWriter.close();
+        }
+    }
+
+
+    public String execQuery(String query) throws IOException {
+        String feedback = "false";
+        if (query.contains("get")){
+            if (query.contains("where") && query.contains("=")){
+                String dataCol,colName,colData;
+                dataCol = query.substring(query.indexOf(" ",query.indexOf("get")),query.indexOf(" ",query.indexOf(" ",query.indexOf("get"))+1)).trim();
+                colName = query.substring(query.indexOf(" ",query.indexOf("where")),query.indexOf("=")+1).trim();
+                colData = query.substring(query.indexOf("=")+1,query.length()).trim();
+                feedback =  getDataFromTable(searcher(colData,colName).get(0),dataCol);
+                status = true;
+            }
+        }else if (query.contains("update")){
+            String data,dataCol,colName,colData;
+            dataCol = query.substring(query.indexOf(" ",query.indexOf("update")),query.indexOf("=",query.indexOf(" ",query.indexOf("update")))).trim();
+            data = query.substring(query.indexOf("=")+1,query.indexOf(" ",query.indexOf("=")+1)).trim();
+            colName = query.substring(query.indexOf(" ",query.indexOf("where")+1),query.indexOf("=",query.indexOf("where"))).trim();
+            colData = query.substring(query.indexOf("=",query.indexOf("where"))+1,query.length()).trim();
+            updateCell(colName,colData,dataCol,data);
+            feedback = "true";
+        }else {
+            feedback = "false";
+        }
+
+        return feedback;
     }
 
 
