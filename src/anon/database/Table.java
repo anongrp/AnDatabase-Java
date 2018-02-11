@@ -69,7 +69,7 @@ public class Table {
                  finalRow[i] = row[i-1];
              }
              FileWriter metaDataWriter = new FileWriter(metaData);
-             metaDataWriter.append("{\n\tKeyInfo:\n\t{\n\t\tlastKey:"+primaryKey+";\n\t}\n}");
+             metaDataWriter.append("{\n\tKeyInfo:\n\t{\n\t\tlastKey:"+primaryKey+"\n\t}\n}");
              metaDataWriter.close();
 
          }else {
@@ -77,7 +77,7 @@ public class Table {
              String data ,key = "0";
              while ((data = reader.readLine()) != null){
                  if (data.contains("lastKey")){
-                     key = data.substring(data.indexOf(":")+1,data.length()-1);
+                     key = data.substring(data.indexOf(":")+1,data.length());
                  }
              }
              //ArrayList<String> lastRowData = getFetchedData(lastRow);
@@ -89,7 +89,7 @@ public class Table {
              }
 
              FileWriter metaDataWriter = new FileWriter(metaData);
-             metaDataWriter.append("{\n\tKeyInfo:\n\t{\n\t\tlastKey:"+primaryKey+";\n\t}\n}");
+             metaDataWriter.append("{\n\tKeyInfo:\n\t{\n\t\tlastKey:"+primaryKey+"\n\t}\n}");
              metaDataWriter.close();
          }
 
@@ -171,9 +171,11 @@ public class Table {
 
 
     private String getDataFromTable(String row,String colName){
-        return getFetchedData(row).get(colInfo.get(colName));
+        return getFetchedData(row).get(colInfo.get(colName) - 1);
     }
-
+    public boolean deleteElementWithQuery(String query) throws IOException {
+        return deleteElement(query.substring(0,query.indexOf("=")),query.substring(query.indexOf("=")+1,query.length()));
+    }
 
     public boolean deleteElement(String colName,String target) throws IOException {
         boolean deleteStatus = false;
@@ -237,6 +239,10 @@ public class Table {
         return fechedData;
     }
 
+
+    public ArrayList<String> getRowWithQuery(String query) throws IOException {
+        return getRow(query.substring(0, query.indexOf("=")),query.substring(query.indexOf("=")+1,query.length()));
+    }
 
     public ArrayList<String> getRow(String colName,String target) throws IOException {
         String row = null;
@@ -356,14 +362,9 @@ public class Table {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Integer count=0;
         if (list != null){
             for (ArrayList data : list){
-                if (count.equals(0))
-                    System.out.println("   "+data);
-                else
-                    System.out.println(count+") "+data);
-                count++;
+                System.out.println("   "+data);
             }
         }
         return "\n\n"+super.toString();

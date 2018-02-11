@@ -20,14 +20,7 @@ public class Main {
         }else {
             System.out.println("Some Erro");
         }
-
-        for (int i=0;i<500000;i++){
-            login_tb.insertRow(data);
-        }
-
-        /*ArrayList table = login_tb.getFullTable();
-        System.out.println(table);*/
-        /*System.out.println(Security.encrypt("AnDatabase",1234567890));
-        System.out.println(Security.decrypt(Security.encrypt("AnDatabase",1234567890),1234567890));*/
+        System.out.println(login_tb.deleteElementWithQuery("key=2"));
+        System.out.println(login_tb.getRowWithQuery("name=Anikesh"));
     }
 }

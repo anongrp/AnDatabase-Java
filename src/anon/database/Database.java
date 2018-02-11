@@ -3,7 +3,6 @@ package anon.database;
 import anon.database.connect.Connection;
 import anon.database.exceptions.DatabaseConnectionException;
 import anon.database.exceptions.NoTableFoundException;
-
 import java.io.File;
 import java.util.ArrayList;
 
@@ -53,7 +52,7 @@ public class Database {
         String tableName;
         try {
             for (int i=0;i<tablesDir.length;i++){
-                if (tablesDir[i].isFile()){
+                if (tablesDir[i].isFile() && tablesDir[i].getName().contains("tb")){
                     tableName = tablesDir[i].getName();
                     tableName = tableName.substring(tableName.indexOf("-")+1,tableName.indexOf("."));
                     listTables.add(tableName);
