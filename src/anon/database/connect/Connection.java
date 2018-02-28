@@ -21,6 +21,8 @@ public class Connection {
             dbLocation = "/home/"+System.getProperty("user.name")+File.separator+"."+projectName;
             Connection.status = true;
         }
+
+
         return initSpace();
     }
 

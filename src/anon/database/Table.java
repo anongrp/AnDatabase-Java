@@ -52,6 +52,7 @@ public class Table {
             writeColumnData.write("¤");
             writeColumnData.close();
         }
+
     }
 
 
@@ -180,6 +181,7 @@ public class Table {
     }
 
     public boolean deleteElement(String colName,String target) throws IOException {
+
         boolean deleteStatus = false;
         String deleteRow = "";
         ArrayList<String> rows = new ArrayList<String>();
@@ -424,6 +426,42 @@ public class Table {
 
         return status;
     }
+
+    public boolean exportToXML(File xmlFile) throws IOException {
+        boolean status = false;
+        final String TAG_OPENING = "<";
+        final String TAG_CLOSING = ">";
+        final String TAG_OPENING_WITH_CLOSE = "</";
+        final String NEW_LINE_SEPARATOR = "\n";
+        final String SINGLE_TAB = "\t";
+        final String DOUBLE_TAB = "\t\t";
+        ArrayList<ArrayList<String>> tabelData = this.getFullTable();
+        FileWriter writer = null;
+        Integer count = 0;
+        try {
+            xmlFile.createNewFile();
+            writer = new FileWriter(xmlFile);
+            writer.append(TAG_OPENING+"Table"+TAG_CLOSING);
+            for (ArrayList<String> row: tabelData){
+                count++;
+                if (count != 1){
+                    writer.append(NEW_LINE_SEPARATOR+SINGLE_TAB+TAG_OPENING+"row key="+row.get(0)+TAG_CLOSING+NEW_LINE_SEPARATOR);
+                    for (int i=1;i<row.size();i++){
+                        writer.append(DOUBLE_TAB+TAG_OPENING+"data"+TAG_CLOSING+row.get(i)+TAG_OPENING_WITH_CLOSE+"data"+TAG_CLOSING+NEW_LINE_SEPARATOR);
+                    }
+                    writer.append(SINGLE_TAB+TAG_OPENING_WITH_CLOSE+"row"+TAG_CLOSING);
+                }
+            }
+            writer.append(NEW_LINE_SEPARATOR+TAG_OPENING_WITH_CLOSE+"Table"+TAG_CLOSING);
+        }catch (Exception e){
+            status = false;
+        }finally {
+            writer.close();
+        }
+
+        return status;
+    }
+
 
     @Override
     public String toString() {
