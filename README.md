@@ -10,7 +10,7 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
  1. No SQL Required, SQL Free Database
  2. Easy Implementation
  3. Fast, Flexible and Secure 
- 4. Table Exportation Support (To CSV for Excel & JSON File for Web Data Sharing)
+ 4. Table Exportation Support (To CSV for Excel, JSON File for Web Data Sharing & in XML)
  5. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Knows.
  6. Easy Implementation Only Maximum 10 Lines Of Code Required For Implementing AnDatabase.  
  
