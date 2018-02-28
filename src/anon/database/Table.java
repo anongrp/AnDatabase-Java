@@ -413,6 +413,7 @@ public class Table {
                 }else {
                     writer.append(NEW_LINE_SEPARATOR+SINGLE_TAB+BRACKET_CLOSE);
                 }
+                status = true;
                 tempCounter++;
             }
 
@@ -451,6 +452,7 @@ public class Table {
                     }
                     writer.append(SINGLE_TAB+TAG_OPENING_WITH_CLOSE+"row"+TAG_CLOSING);
                 }
+                status = true;
             }
             writer.append(NEW_LINE_SEPARATOR+TAG_OPENING_WITH_CLOSE+"Table"+TAG_CLOSING);
         }catch (Exception e){
