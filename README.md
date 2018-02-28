@@ -1,4 +1,4 @@
-# AnDatabase : _The Anon Group Service_
+# AnonGrp : _The Mind In Your Hand_
 
 # `Just Focus On What To Do, Not In How To Do`
 
@@ -10,20 +10,13 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
  1. No SQL Required, SQL Free Database
  2. Easy Implementation
  3. Fast, Flexible and Secure 
- 4. Table Exportation Support (To CSV for Excel & JSON File for Web Data Sharing)
+ 4. Table Exportation Support (To CSV for Excel, JSON File for Web Data Sharing & in XML)
  5. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Knows.
  6. Easy Implementation Only Maximum 10 Lines Of Code Required For Implementing AnDatabase.  
  
-## _> Release_ :    
-![AnDatabase v2.4 JRE 9.jar (Latest Version) ](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20%20v2.4%20JRE%209%20.jar)                 
-![AnDatabase v2.4 JRE 8.jar (Latest Version) ](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.4%20JRE%208.jar)    
-![AnDatabase v2.3 JRE 9.jar ](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.3%20JRE%209.jar)   
-![AnDatabase v2.2 JRE 9.jar](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.2%20JRE%209%20.jar)    
-![AnDatabase v2.2 JRE 8.jar](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.2%20JRE%208%20.jar)    
-![AnDatabase v2.1jar](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.1.jar)    
-
-      
-![Take More ........](https://github.com/anongrp/AnDatabase/blob/master/Release.md)  
+##  ![Release](https://github.com/anongrp/AnDatabase/releases)   
+![AnDatabase v2.5 JRE 9.jar (Latest Stable Version) ](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.5%20JRE%209.jar)  
+     
 
  ### _Looking For Python_ Visit ![AnPyDatabase](https://github.com/Anikeshpatel/AnPyDatabase)    
 ## _> Projects Using AnDatabase_ :   
@@ -50,20 +43,14 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
  ```  
  3. Creating Table Inside mainDatabase  
  ```java 
- Table loginFormTable = new Table();  
- loginFormTable.createTable("TableName",mainDatabase);
+ String[] colName = new String[]{"name","email","password"};
+ Table loginFormTable = new Table("TableName",mainDatabase,colName);  
  ```
  
- 4. Add Columns Inside Table  
+ 4. Ok That's It You Have Good To Go With AnDatabase And For Adding Data To Table Or Column Use  
  ```java 
- String[] colName = new String[]{"id", "name","email","password"};  
- loginFormTable.setColumns(colName);
- ```
- 
- 5. Ok That's It You Have Good To Go With AnDatabase And For Adding Data To Table Or Column Use  
- ```java 
- String[] rowData = new String[]{"1","UserName","UserEmail@Example.com"};
- studentTB.addRow(rowData);
+ String[] rowData = new String[]{"UserName","UserEmail@Example.com","12345"};
+ studentTB.insertRow(rowData);
  ```
  
  # >>> Security Example : 
