@@ -436,17 +436,25 @@ public class Table {
         final String NEW_LINE_SEPARATOR = "\n";
         final String SINGLE_TAB = "\t";
         final String DOUBLE_TAB = "\t\t";
+        final String XMLVERSION_AND_ENCODING="<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
         ArrayList<ArrayList<String>> tabelData = this.getFullTable();
         FileWriter writer = null;
         Integer count = 0;
         try {
             xmlFile.createNewFile();
             writer = new FileWriter(xmlFile);
+            writer.append(XMLVERSION_AND_ENCODING+NEW_LINE_SEPARATOR);
             writer.append(TAG_OPENING+"Table"+TAG_CLOSING);
             for (ArrayList<String> row: tabelData){
                 count++;
+                if(count == 1){
+                    writer.append(NEW_LINE_SEPARATOR+SINGLE_TAB+TAG_OPENING+"Column key="+row.get(0)+TAG_CLOSING+NEW_LINE_SEPARATOR);
+                    for (int i=1;i<row.size();i++){
+                        writer.append(DOUBLE_TAB+TAG_OPENING+"data"+TAG_CLOSING+row.get(i)+TAG_OPENING_WITH_CLOSE+"data"+TAG_CLOSING+NEW_LINE_SEPARATOR);
+                    }
+                }
                 if (count != 1){
-                    writer.append(NEW_LINE_SEPARATOR+SINGLE_TAB+TAG_OPENING+"row key="+row.get(0)+TAG_CLOSING+NEW_LINE_SEPARATOR);
+                    writer.append(NEW_LINE_SEPARATOR+SINGLE_TAB+TAG_OPENING+"Row key="+row.get(0)+TAG_CLOSING+NEW_LINE_SEPARATOR);
                     for (int i=1;i<row.size();i++){
                         writer.append(DOUBLE_TAB+TAG_OPENING+"data"+TAG_CLOSING+row.get(i)+TAG_OPENING_WITH_CLOSE+"data"+TAG_CLOSING+NEW_LINE_SEPARATOR);
                     }
