@@ -452,13 +452,14 @@ public class Table {
                     for (int i=1;i<row.size();i++){
                         writer.append(DOUBLE_TAB+TAG_OPENING+"data"+TAG_CLOSING+row.get(i)+TAG_OPENING_WITH_CLOSE+"data"+TAG_CLOSING+NEW_LINE_SEPARATOR);
                     }
+                    writer.append(SINGLE_TAB+TAG_OPENING_WITH_CLOSE+"Column"+TAG_CLOSING);
                 }
                 if (count != 1){
                     writer.append(NEW_LINE_SEPARATOR+SINGLE_TAB+TAG_OPENING+"Row key="+row.get(0)+TAG_CLOSING+NEW_LINE_SEPARATOR);
                     for (int i=1;i<row.size();i++){
                         writer.append(DOUBLE_TAB+TAG_OPENING+"data"+TAG_CLOSING+row.get(i)+TAG_OPENING_WITH_CLOSE+"data"+TAG_CLOSING+NEW_LINE_SEPARATOR);
                     }
-                    writer.append(SINGLE_TAB+TAG_OPENING_WITH_CLOSE+"row"+TAG_CLOSING);
+                    writer.append(SINGLE_TAB+TAG_OPENING_WITH_CLOSE+"Row"+TAG_CLOSING);
                 }
                 status = true;
             }
