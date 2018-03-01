@@ -1,6 +1,8 @@
 package anon.database;
 
+import anon.database.connect.Connection;
 import anon.database.exceptions.ColumnIndexOutOfBoundException;
+import anon.database.exceptions.FileTypeNotSupportedException;
 import anon.database.exceptions.TableCreationOutOfBoundException;
 import java.io.*;
 import java.util.ArrayList;
@@ -16,6 +18,14 @@ public class Table {
     private int noOfColumns;
     private String[] columnNames;
     private HashMap<String,Integer> colInfo = new HashMap<>();
+    private ArrayList<String> columnArrayList=new ArrayList<>();
+    private ArrayList<String> rowArrayList=new ArrayList<>();
+    private BufferedReader importedFileReader;
+    private BufferedWriter exportFileWriter;
+    private Integer columnItemCounter=0;
+    private Integer counterForANDB=0;
+    private Integer rCounter=0;
+    private Integer rowCounter=0;
 
 
     // Constructor
@@ -488,5 +498,105 @@ public class Table {
             }
         }
         return "\n\n"+super.toString();
+    }
+
+    public boolean importInANDB(String pathname) throws FileTypeNotSupportedException, IOException {
+        Boolean status=false;
+        final String XML_FILE=".xml";
+        final String JSON_FILE=".json";
+        final String CSV_FILE=".csv";
+        String lineReader=new String();
+        if(pathname.contains(XML_FILE)){
+            final String COLUMN_OPEN_TAG="<Column key=";
+            final String COLUMN_CLOSE_TAG="</Column>";
+            final String ROW_OPEN_TAG="<Row key";
+            final String ROW_CLOSE_TAG="</Row>";
+            final String CLOSE_BRACKET=">";
+            final String OPEN_DATA_TAG="<data>";
+            final String CLOSE_DATA_TAG="</data>";
+            importedFileReader=new BufferedReader(new FileReader(new File(pathname)));
+            while (importedFileReader.readLine()!=null){
+                lineReader=importedFileReader.readLine();
+                System.out.println("It works");
+                if (lineReader.contains(COLUMN_OPEN_TAG)){
+                    columnArrayList.add(lineReader.substring(lineReader.indexOf(COLUMN_OPEN_TAG)+1,lineReader.indexOf(CLOSE_BRACKET)));
+                    columnItemCounter++;
+                    while (!lineReader.equals(COLUMN_CLOSE_TAG)){
+                        columnArrayList.add(lineReader.substring(lineReader.indexOf(OPEN_DATA_TAG)+1,lineReader.indexOf(CLOSE_DATA_TAG)));
+                        columnItemCounter++;
+                    }
+                }
+                else if (lineReader.contains(ROW_OPEN_TAG)){
+                    rowArrayList.add(lineReader.substring(lineReader.indexOf(ROW_OPEN_TAG)+1,lineReader.indexOf(CLOSE_BRACKET)));
+                    while (!lineReader.equals(ROW_CLOSE_TAG)){
+                        rowArrayList.add(lineReader.substring(lineReader.indexOf(OPEN_DATA_TAG)+1,lineReader.indexOf(CLOSE_DATA_TAG)));
+                    }
+                }
+            }
+            importedFileReader.close();
+            String dbLocation= Connection.dbLocation;
+            status=forDataWriting(dbLocation);
+        }
+        else if (pathname.contains(JSON_FILE)){
+
+        }
+        else if (pathname.contains(CSV_FILE)){
+
+        }
+        else {
+            throw new FileTypeNotSupportedException();
+        }
+        return status;
+    }
+    private boolean forDataWriting(String dbPath) throws IOException {
+        boolean status=false;
+        File andbFile=new File(dbPath+"export"+counterForANDB+".andb");
+        counterForANDB++;
+        status=columnWriter(andbFile);
+        if (status){
+            status=rowWriter(andbFile);
+            if (status){
+                columnArrayList.clear();
+                rowArrayList.clear();
+            }
+        }
+
+    return status;
+    }
+
+    private boolean rowWriter(File andbFile) throws IOException {
+        boolean status=false;
+        final String ROW_INDICATOR="ȸ";
+        exportFileWriter=new BufferedWriter(new FileWriter(andbFile,true));
+        exportFileWriter.write(ROW_INDICATOR);
+        for (int i=rCounter;i<=rowArrayList.size();i++){
+            rCounter++;
+            rowCounter++;
+            if (rowCounter<=columnItemCounter){
+                exportFileWriter.write(i+ROW_INDICATOR);
+            }
+            else {
+                exportFileWriter.newLine();
+                exportFileWriter.close();
+                rowCounter=0;
+                rowWriter(andbFile);
+            }
+        }
+        status=true;
+        return status;
+    }
+
+    private boolean columnWriter(File andbFile) throws IOException {
+        boolean status=false;
+        final String COLUMN_INDICATOR="¤";
+        exportFileWriter=new BufferedWriter(new FileWriter(andbFile));
+        exportFileWriter.write(COLUMN_INDICATOR);
+        for (int i=0;i<=columnArrayList.size();i++){
+            exportFileWriter.write(i+COLUMN_INDICATOR);
+        }
+        exportFileWriter.newLine();
+        exportFileWriter.close();
+        status=true;
+        return status;
     }
 }

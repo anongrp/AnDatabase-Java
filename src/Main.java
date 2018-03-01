@@ -1,16 +1,13 @@
 import anon.database.*;
 import anon.database.connect.Connection;
-import anon.database.exceptions.ColumnIndexOutOfBoundException;
-import anon.database.exceptions.DatabaseConnectionException;
-import anon.database.exceptions.NoTableFoundException;
-import anon.database.exceptions.TableCreationOutOfBoundException;
+import anon.database.exceptions.*;
 
 import java.io.File;
 import java.io.IOException;
 
 
 public class Main {
-    public static void main(String[] args) throws IOException, TableCreationOutOfBoundException, ColumnIndexOutOfBoundException, DatabaseConnectionException, NoTableFoundException {
+    public static void main(String[] args) throws IOException, TableCreationOutOfBoundException, ColumnIndexOutOfBoundException, DatabaseConnectionException, NoTableFoundException, FileTypeNotSupportedException {
 
         Database maindb = null;
         Table login_tb = null;
@@ -24,5 +21,6 @@ public class Main {
         }
 
         System.out.println(login_tb.exportToXML(new File("C:/Users/Gaurav/Desktop/data.xml")));
+        System.out.println(login_tb.importInANDB("C:/Users/Gaurav/Desktop/data.xml"));
     }
 }
