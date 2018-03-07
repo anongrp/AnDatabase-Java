@@ -3,6 +3,8 @@
 # `Just Focus On What To Do, Not In How To Do`
 
 
+## <p>Under Development ...</p>
+
 AnDatabase is a Database that provides a simple way to manage data in simple desktop application Like Music Player, Video Player, and Text Editor. In AnDatabase data is organized into rows, columns, and tables, and it is indexed to make it easier to find relevant information. Data gets updated, expanded and deleted as new information is added.
 
 
@@ -14,7 +16,7 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
  5. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Knows.
  6. Easy Implementation Only Maximum 10 Lines Of Code Required For Implementing AnDatabase.  
  
-##  ![Release](https://github.com/anongrp/AnDatabase/releases)   
+##  ![Beta Release](https://github.com/anongrp/AnDatabase/releases)    
 ![AnDatabase v2.5 JRE 9.jar (Latest Stable Version) ](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.5%20JRE%209.jar)  
      
 
