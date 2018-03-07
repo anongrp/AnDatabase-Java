@@ -17,8 +17,8 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
  6. Easy Implementation Only Maximum 10 Lines Of Code Required For Implementing AnDatabase.  
  
 ##  ![Beta Release](https://github.com/anongrp/AnDatabase/releases)    
-![AnDatabase v2.5 JRE 9.jar (Latest Stable Version) ](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.5%20JRE%209.jar)  
-     
+![AnDatabase v2.5 JRE 9.jar (Latest Beta Version) ](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.5%20JRE%209.jar)  
+     
 
  ### _Looking For Python_ Visit ![AnPyDatabase](https://github.com/Anikeshpatel/AnPyDatabase)    
 ## _> Projects Using AnDatabase_ :   
@@ -35,7 +35,7 @@ AnDatabase is a Database that provides a simple way to manage data in simple des
 | ------------- |:------------------:|
 | Database      | Handle Database    |
 | Table         | Handle Tables      |
-| Security      | Provide Encryption |
+| Security      | Provide Encryption |
 
  1. For Connecting To The AnDatabase `Connection.connect();` It Simply Returns Boolean Value True If Database is Connected Otherwise False.     
  
