@@ -16,9 +16,9 @@
 * <p>Simple SQL require for complex data fetching
 
 ## _Features_ : 
- 3. Fast, Flexible and Secure 
- 4. Table Exportation Support (To CSV for Excel, JSON File for Web Data Sharing & in XML)
- 5. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Knows. 
+ 1. Fast, Flexible and Secure 
+ 2. Table Exportation Support (To CSV for Excel, JSON File for Web Data Sharing & in XML)
+ 3. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Knows. 
  
 ##  ![Beta Release](https://github.com/anongrp/AnDatabase/releases)    
 ![AnDatabase v2.5 JRE 9.jar (Latest Beta Version) ](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.5%20JRE%209.jar)  
