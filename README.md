@@ -5,16 +5,20 @@
 
 # <p align="center">Under Development ...</p>
 
-AnDatabase is a Database that provides a simple way to manage data in simple desktop application Like Music Player, Video Player, and Text Editor. In AnDatabase data is organized into rows, columns, and tables, and it is indexed to make it easier to find relevant information. Data gets updated, expanded and deleted as new information is added.
+<p>AnDatabase is a Database that provides a simple way to store and manage data in java desktop application. In AnDatabase data is organized into rows, columns, and tables, and it is indexed to make it easier to find relevant information. Data gets updated, expanded and deleted as new information is added.</p>
+<p>You can use it for storing your application setting data and other complex data.</p>
 
+# Reason for using it 
+* <p>Lightweight</p>
+* <p>Easy implementation</p>
+* <p>Less Code for implement AnDatabase</p>
+* <p>Bahave like database</p>
+* <p>Simple SQL require for complex data fetching
 
 ## _> Features_ : 
- 1. No SQL Required, SQL Free Database
- 2. Easy Implementation
  3. Fast, Flexible and Secure 
  4. Table Exportation Support (To CSV for Excel, JSON File for Web Data Sharing & in XML)
- 5. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Knows.
- 6. Easy Implementation Only Maximum 10 Lines Of Code Required For Implementing AnDatabase.  
+ 5. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Knows. 
  
 ##  ![Beta Release](https://github.com/anongrp/AnDatabase/releases)    
 ![AnDatabase v2.5 JRE 9.jar (Latest Beta Version) ](https://github.com/anongrp/AnDatabase/raw/master/Release/AN%20Database%20v2.5%20JRE%209.jar)  
