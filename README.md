@@ -1,6 +1,6 @@
 # AnonGrp : _The Mind In Your Hand_
 
-# `Just Focus On What To Do, Not In How To Do`
+# <p align="center">`Just Focus On What To Do, Not In How To Do`</p>
 
 
 # <p align="center">Under Development ...</p>
