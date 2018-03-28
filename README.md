@@ -15,7 +15,7 @@
 * <p>Bahave like database</p>
 * <p>Simple SQL require for complex data fetching
 
-## _> Features_ : 
+## _Features_ : 
  3. Fast, Flexible and Secure 
  4. Table Exportation Support (To CSV for Excel, JSON File for Web Data Sharing & in XML)
  5. Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Knows. 
@@ -25,14 +25,14 @@
      
 
  ### _Looking For Python_ Visit ![AnPyDatabase](https://github.com/Anikeshpatel/AnPyDatabase)    
-## _> Projects Using AnDatabase_ :   
+## _Projects Using AnDatabase_ :   
 
 * <a href="https://github.com/anongrp/ThunderGet">ThunderGet</a>
 * <a href="https://github.com/Anikeshpatel/Lucid-Smart-Buddy">Lucid-Smart-Buddy</a>
 * <a href="https://github.com/anikeshpatel/colorcode-pro">ColorCode Pro</a>   
 * <a href="https://github.com/anongrp/Portume">Portume</a>   
  
-# _> Basic Implementation_ :
+# _Basic Implementation_ :
 
 ### _List Of Classes_ :    
 | Classes       | Summary            |
