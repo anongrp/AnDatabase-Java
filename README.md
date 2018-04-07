@@ -13,7 +13,7 @@
 * Easy implementation
 * Less Code for implement AnDatabase
 * Bahave like database
-* Simple SQL require for complex data fetching
+* Simple SQL require for complex data updating & fetching
 * Fast and Secure 
 * Table Exportation Support (To CSV for Excel, JSON File for Web Data Sharing & in XML)
 * Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Knows. 
