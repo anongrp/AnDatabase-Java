@@ -9,11 +9,11 @@
 <p>You can use it for storing your application setting data and other complex data.</p>
 
 # Reason for using it 
-* <p>Lightweight</p>
-* <p>Easy implementation</p>
-* <p>Less Code for implement AnDatabase</p>
-* <p>Bahave like database</p>
-* <p>Simple SQL require for complex data fetching
+* Lightweight
+* Easy implementation
+* Less Code for implement AnDatabase
+* Bahave like database
+* Simple SQL require for complex data fetching
 * Fast and Secure 
 * Table Exportation Support (To CSV for Excel, JSON File for Web Data Sharing & in XML)
 * Data Stored In Highly Secured Encryption Algorithms With Encryption Key That's Only Developer Knows. 
