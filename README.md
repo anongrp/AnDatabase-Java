@@ -36,7 +36,7 @@
 | Table         | Handle Tables      |
 | Security      | Provide Encryption |
 
- 1. For Connecting To The AnDatabase `Connection.connect();` It Simply Returns Boolean Value True If Database is Connected Otherwise False.     
+ 1. For Connecting To The AnDatabase `Connection.connect("NameOfYourProject");` It Simply Returns Boolean Value True If Database is Connected Otherwise False.     
  
  2. Creating Database  
  ```java 
