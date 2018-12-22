@@ -3,8 +3,6 @@
 # <p align="center">`Just Focus On What To Do, Not In How To Do`</p>
 
 
-# <p align="center">Under Development ...</p>
-
 <p>AnDatabase is a Database that provides a simple way to store and manage data in java desktop application. In AnDatabase data is organized into rows, columns, and tables, and it is indexed to make it easier to find relevant information. Data gets updated, expanded and deleted as new information is added.</p>
 <p>You can use it for storing your application setting data and other complex data.</p>
 
